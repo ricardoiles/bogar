@@ -18,7 +18,7 @@
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-6 col-md-6">
+                    <div id="suscribe" class="col-xl-6 col-md-6">
                         <div class="footer_widget">
                                 <h3 class="footer_title">
                                         Obten mis servicios

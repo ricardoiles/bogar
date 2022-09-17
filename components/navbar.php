@@ -18,8 +18,8 @@
                                     <ul id="navigation">
                                         <li><a class="active" href="index.php">Inicio</a></li>
                                         <li><a href="about.php">Sobre mí</a></li>
-                                        <li><a href="track.html">Servicios</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="services.php">Servicios</a></li>
+                                        <li><a href="blog.php">Blog</a></li>
                                         <li><a href="contact.html">Contactame</a></li>
                                     </ul>
                                 </nav>

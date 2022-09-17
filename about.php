@@ -72,9 +72,9 @@
                             <h5>Músico/baterista interprete con más de 15 años de experiencia.</h5>
                         </h3>
                         <p>
-                            Soy docente cuento con más de 10 años de experiencia en escuelas como ICM, Reaktor, Bogar Online (Proyecto propio). Me dedico a impartir clases y programas de materias musicales personalizadas 1 a 1 o grupales. <br>
+                            Soy docente cuento con más de 7 años de experiencia en escuelas como ICM, Reaktor, Bogar Online (Proyecto propio). Me fascina el reto de transmitir a través del instrumento los sentimientos que el compositor quiera expresar en su obra. <br>
                             La música me ha devuelto la salud, la coordinación y la felicidad, también me ha acompañado y retado día a día  a desarrollar esa constancia y disciplina para poder ser mejor en la vida. <br>
-                            Me fascina el reto de transmitir sentimientos a través de los instrumentos que el artista/compositor interpreta al espectador. Proporcionó un servicio profesional y de calidad aplicando mis conocimientos y experiencia; cumpliendo con ética, responsabilidad, compromiso y esfuerzo a la realización de las metas y objetivos que se requieran en cada proyecto. <br>
+                            Me fascina el reto de transmitir a través del instrumento los sentimientos que el compositor quiera expresar en su obra. Proporcionó un servicio profesional y de calidad aplicando mis conocimientos y experiencia; cumpliendo con ética, responsabilidad, compromiso y esfuerzo a la realización de las metas y objetivos que se requieran en cada proyecto. <br>
                             Algunos temas que he grabado han sido nominados a participar en premiaciones y también producidos por sellos discográficos extranjeros como <strong>Otitis Media Records, Green Cookie Records.</strong> 
                         </p>
                         <div class="signature">

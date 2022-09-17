@@ -87,28 +87,6 @@
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="ms-2 c-details">
-                                        <h4 class="mb-0"><b class="bogar-negrita">Trading</b></h4>
-                                    </div>
-                                </div>
-                                <div class="badge bg-primary"> <span>Servicio</span> </div>
-                            </div>
-                            <div class="bogar-card-body">
-                                <h5 class="">
-                                    <ul>
-                                        <li>- Uso de criptomonedas y manejo de plataformas de comercio / exchanges: (Bitso, Binance…etc).</li>
-                                        <li>- Grabaciones de estudio.</li>
-                                        <li>- Creación de ideas y ritmos para tus canciones.</li>
-                                        <li>- Músico suplente - en vivo o ensayos.</li>
-                                    </ul>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card p-3 mb-2">
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="ms-2 c-details">
                                         <h4 class="mb-0"><b class="bogar-negrita">Producción audiovisual</b></h4>
                                     </div>
                                 </div>
@@ -143,6 +121,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-danger rounded-pill" href="#suscribe">Obtén mis servicios</a>
                 </div>
                 <!-- end service section -->
                 <!-- clase section -->
@@ -179,7 +160,7 @@
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="ms-2 c-details">
-                                        <h4 class="mb-0"><b class="bogar-negrita">Contenido digital</b></h4>
+                                        <h4 class="mb-0"><b class="bogar-negrita">Trading</b></h4>
                                     </div>
                                 </div>
                                 <div class="badge bg-success"> <span>Clase</span> </div>
@@ -187,9 +168,10 @@
                             <div class="bogar-card-body">
                                 <h5 class="">
                                     <ul>
-                                        <li>- Tutoriales/Clases gratuitas grabadas.</li>
-                                        <li>- Entrevistas.</li>
-                                        <li>- Cursos digitales <b>con costo</b>.</li>
+                                        <li>- Uso de criptomonedas y manejo de plataformas de comercio / exchanges: (Bitso, Binance…etc).</li>
+                                        <li>- Grabaciones de estudio.</li>
+                                        <li>- Creación de ideas y ritmos para tus canciones.</li>
+                                        <li>- Músico suplente - en vivo o ensayos.</li>
                                     </ul>
                                 </h5>
                             </div>
@@ -217,8 +199,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 mb-2">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="ms-2 c-details">
+                                        <h4 class="mb-0"><b class="bogar-negrita">Contenido digital</b></h4>
+                                    </div>
+                                </div>
+                                <div class="badge bg-success"> <span>Clase</span> </div>
+                            </div>
+                            <div class="bogar-card-body">
+                                <h5 class="">
+                                    <ul>
+                                        <li>- Tutoriales/Clases gratuitas grabadas.</li>
+                                        <li>- Entrevistas.</li>
+                                        <li>- Cursos digitales <b>con costo</b>.</li>
+                                    </ul>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <!-- end clase section -->
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-danger rounded-pill" href="contact.php">Accede a mis clases</a>
             </div>
         </div>
     </div>
