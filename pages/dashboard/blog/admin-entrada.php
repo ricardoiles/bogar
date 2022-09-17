@@ -1,5 +1,5 @@
 <?php
-	require '../php/sign-in/config.php';
+	require '../../php/sign-in/config.php';
 	if(empty($_SESSION['name']))
 		header('Location: ../sign-in.php');
 ?>
@@ -26,24 +26,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="assets/css/demo.css" />
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Helpers -->
-    <script src="assets/vendor/js/helpers.js"></script>
+    <script src="../assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="assets/js/config.js"></script>
+    <script src="../assets/js/config.js"></script>
   </head>
 
   <body>
@@ -121,7 +121,7 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="index.html" class="menu-link">
                 <i class="bi bi-house menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -129,7 +129,7 @@
             </li>
 
             <!-- Layouts -->
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="bi bi-journal-text menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Blog</div>
@@ -137,12 +137,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="../../blog.php" class="menu-link" target="_blank">
+                  <a href="../../../blog.php" class="menu-link" target="_blank">
                     <div data-i18n="Without menu">Ver blog &nbsp; <i class="bi bi-box-arrow-up-right"></i></div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="blog/admin-entrada.php" class="menu-link">
+                <li class="menu-item active">
+                  <a href="" class="menu-link">
                     <div data-i18n="Container">Administrar Entradas</div>
                   </a>
                 </li>
@@ -206,7 +206,7 @@
                 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                 <!-- Search -->
                 <div class="navbar-nav align-items-center">
-                    Panel de administración
+                    Administrar entradas
                 </div>
                 <!-- /Search -->
 
@@ -215,7 +215,7 @@
                     <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar">
-                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -224,7 +224,7 @@
                             <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                                 <div class="avatar">
-                                <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                                 </div>
                             </div>
                             <div class="flex-grow-1">
@@ -237,8 +237,9 @@
 
                                         if($query -> rowCount() > 0)   { 
                                             foreach($results as $result) { 
-                                                echo "".$result -> name." ". $result -> lastname; ?>
-                                           
+                                                echo "".$result -> name." ". $result -> lastname;
+                                        } }
+                                    ?>
                                 </span>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -276,41 +277,114 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
-                <div class="col-lg-12 mb-4 order-0">
-                  <div class="card">
-                    <div class="d-flex align-items-end row">
-                      <div class="col-sm-8">
-                        <div class="card-body">
-                          <h5 class="card-title text-primary">Bienvenido 
-                            <?php  
-                                echo "<span class='fw-bold'>".$result -> name."</span>";
-                               } }
-                            ?> <i class="bi bi-emoji-laughing"></i>
-                            </h5>
-                          <p class="mb-4">
-                            Este es el panel de administración de tu portafolio, aquí podrás administrar tus datos de acceso, blog, servicios y datos sobre ti.
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-sm-4 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-4">
-                          <img
-                            src="assets/img/illustrations/man-with-laptop-light.png"
-                            height="140"
-                            alt="View Badge User"
-                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                            data-app-light-img="illustrations/man-with-laptop-light.png"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
                 <!-- Order Statistics -->
-                <div class="col-md-12 col-lg-4 col-xl-4 order-0 mb-4">
-                  Ultimas acciones
+                <div class="col-md-12 col-lg-12 col-xl-12 order-0 mb-4">
+                    <!-- Accordion -->
+                    <div class="row">
+                        <!-- Entradas publicadas -->
+                        <div class="col-md mb-4 mb-md-0">
+                            <h6 class="text-dark fw-semibold">
+                                <i class="bi bi-check-circle"></i> &nbsp;
+                                Entradas publicadas
+                            </h6>
+                            <?php
+                                $sql = "SELECT * FROM blog where estado_entrada = 1"; 
+                                $query = $connect -> prepare($sql); 
+                                $query -> execute(); 
+                                $results = $query -> fetchAll(PDO::FETCH_OBJ); 
+
+                                if($query -> rowCount() > 0)   { 
+                                    foreach($results as $result) { 
+                                        $id= $result -> titulo_entrada;
+                                        $id_entrada =str_replace(' ', '', $id);
+
+                                    echo '
+                                    <div class="accordion mt-3" id="accordionExample">
+                                        <div class="card accordion-item">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                                <button
+                                                type="button"
+                                                class="accordion-button collapsed"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#'.$id_entrada.'"
+                                                aria-expanded="false"
+                                                aria-controls="'.$id_entrada.'"
+                                                ><b>'.
+                                                $result -> titulo_entrada.'</b> &nbsp; del &nbsp; <span class="text-body">'.$result -> fecha_entrada.'
+                                                </span></button>
+                                            </h2>
+                                            <div
+                                                id="'.$id_entrada.'"
+                                                class="accordion-collapse collapse"
+                                                aria-labelledby="headingTwo"
+                                                data-bs-parent="#accordionExample"
+                                            >
+                                                <div class="accordion-body">
+                                                    '.$result -> entrada.'
+                                                    <hr>
+                                                    <span class="card-link">
+                                                        <i class="bi bi-columns-gap"></i>
+                                                        '.$result -> categoria_entrada.'
+                                                    </span> 
+                                                    <span class="card-link">
+                                                        <i class="bi bi-chat-square"></i>
+                                                        '.$result -> comentarios_entrada.' Comentarios
+                                                    </span>
+                                                    <div class="demo-inline-spacing">
+                                                        <button type="button" class="btn rounded-pill btn-outline-primary">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </button>
+                                                        <button type="button" class="btn rounded-pill btn-outline-info">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                        <button type="button" class="btn rounded-pill btn-outline-danger">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                    } }
+                            ?>                            
+                        </div>
+                        <!-- Entradas eliminadas -->
+                        <div class="col-md mb-4 mb-md-0">
+                            <h6 class="text-dark fw-semibold">
+                                <i class="bi bi-trash3"></i> &nbsp;
+                                Entradas Eliminadas
+                            </h6>
+                            <div class="accordion mt-3" id="accordionExample">
+                                <div class="card accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button
+                                        type="button"
+                                        class="accordion-button collapsed"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#accordionTwo"
+                                        aria-expanded="false"
+                                        aria-controls="accordionTwo"
+                                        >
+                                        Titulo de la entrada
+                                        </button>
+                                    </h2>
+                                    <div
+                                        id="accordionTwo"
+                                        class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo"
+                                        data-bs-parent="#accordionExample"
+                                    >
+                                        <div class="accordion-body">
+                                            Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake
+                                            dragée ice cream halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies.
+                                            Jelly beans candy canes carrot cake. Fruitcake chocolate chupa chups.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Accordion -->
                 </div>
                 <!--/ Order Statistics -->
               </div>
@@ -345,24 +419,102 @@
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    <div class="buy-now">
+      <button href="#modal" class="btn btn-circle btn-primary btn-buy-now rounded-pill"
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#backDropModal">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+            <form class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="backDropModalTitle">Añadir nueva entrada al blog</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                        <label for="emailBackdrop" class="form-label">Fecha</label>
+                        <input
+                            type="text"
+                            id="emailBackdrop"
+                            class="form-control"
+                            placeholder="xxxx@xxx.xx"
+                        />
+                        </div>
+                        <div class="col mb-0">
+                        <label for="dobBackdrop" class="form-label">Titulo entrada</label>
+                        <input
+                            type="text"
+                            id="dobBackdrop"
+                            class="form-control"
+                            placeholder="DD / MM / YY"
+                        />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-0">
+                        <label for="emailBackdrop" class="form-label">Entrada</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                        <label for="emailBackdrop" class="form-label">Categoria entrada</label>
+                        <input
+                            type="text"
+                            id="emailBackdrop"
+                            class="form-control"
+                            placeholder="xxxx@xxx.xx"
+                        />
+                        </div>
+                        <div class="col mb-0">
+                        <label for="dobBackdrop" class="form-label">DOB</label>
+                        <input
+                            type="text"
+                            id="dobBackdrop"
+                            class="form-control"
+                            placeholder="DD / MM / YY"
+                        />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
     <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="assets/vendor/libs/popper/popper.js"></script>
-    <script src="assets/vendor/js/bootstrap.js"></script>
-    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <!-- build:js ../assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="assets/vendor/js/menu.js"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="assets/js/dashboards-analytics.js"></script>
+    <script src="../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
