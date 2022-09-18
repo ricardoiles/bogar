@@ -12,16 +12,13 @@ if(!isset($_SESSION['valid'])) {
 	header('Location: ../../sign-in.php');
 }
 ?>
-
 <?php
+
 //including the database connection file
 include_once("../../php/sign-in/config.php");
 
 //fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORDER BY creacion_entrada desc");
-
-// query entradas eliminadas
-$delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 0 ORDER BY creacion_entrada desc");
+$result = mysqli_query($mysqli, "SELECT * FROM blog where id_entrada =".$_GET['id_entrada']);
 ?>
 <!DOCTYPE html>
 <html
@@ -286,139 +283,51 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <!-- message nueva entrada -->
-              <?php if (isset($_SESSION['message'])) { ?>
-                <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible" role="alert">
-                  <?= $_SESSION['message']?>
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              <?php } ?>
               <div class="row">
                 <!-- Order Statistics -->
                 <div class="col-md-12 col-lg-12 col-xl-12 order-0 mb-4">
                     <!-- Accordion -->
                     <div class="row">
-                        <!-- Entradas publicadas -->
-                        <div class="col-md mb-4 mb-md-0">
-                          <h6 class="text-dark fw-semibold">
-                              <i class="bi bi-check-circle"></i> &nbsp;
-                              Entradas publicadas
-                          </h6>
-                          <?php
+                        <?php
                             while($res = mysqli_fetch_array($result)) {	
-                              ?>                                            
-                          <div class="accordion mt-3" id="accordionExample">
-                              <div class="card accordion-item">
-                                  <h2 class="accordion-header" id="headingTwo">
-                                      <button
-                                      type="button"
-                                      class="accordion-button collapsed"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
-                                      aria-expanded="false"
-                                      aria-controls="<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
-                                      >
-                                      <?php echo $res['titulo_entrada']." del ".$res['fecha_entrada'] ?>
-                                      </button>
-                                  </h2>
-                                  <div
-                                    id="<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
-                                    class="accordion-collapse collapse"
-                                    aria-labelledby="headingTwo"
-                                    data-bs-parent="#accordionExample"
-                                  >
-                                      <div class="accordion-body">
-                                        <?php echo $res['entrada']?>
-                                        <hr>
-                                        <span class="card-link">
-                                          <i class="bi bi-columns-gap"></i>
-                                          <?php echo $res['categoria_entrada']?>
-                                        </span>
-                                        <span class="card-link">
-                                          <i class="bi bi-chat-square"></i>
-                                          <?php echo $res['comentarios_entrada']?> Comentarios
-                                        </span>
-                                        <div class="demo-inline-spacing text-end">
-                                          <a 
-                                            href="editar_entrada.php?id_entrada=<?php echo $res['id_entrada']?>"
-                                            type="button" 
-                                            class="btn rounded-pill btn-icon btn-outline-primary"
-                                            >
-                                            <span class="tf-icons bx"><i class="bi bi-pencil"></i></span>
-                                          </a>
-                                          <button type="button" class="btn rounded-pill btn-icon btn-outline-secondary">
-                                            <span class="tf-icons bx "><i class="bi bi-eye"></i></span>
-                                          </button>
-                                          <a
-                                            href="delete_controller.php?id_entrada=<?php echo $res['id_entrada']?>"
-                                            type="button" class="btn rounded-pill btn-icon btn-outline-danger">
-                                            <span class="tf-icons bx "><i class="bi bi-trash3"></i></span>
-                                          </a>
+                        ?>
+                        <h6 class="text-dark">
+                            <i class="bi bi-pencil"></i> &nbsp;
+                            Editar entrada <span class="text-primary"> <?php echo $res['titulo_entrada'];?></span>
+                        </h6>
+                        
+                        <!-- Editar entrada form -->
+                        <div class="col-lg-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <form action="update_controller.php" method="post" name="editar_entrada_form">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basic-default-fullname">Fecha entrada</label>
+                                            <input name="input_fecha" type="text" class="form-control" id="basic-default-fullname" value="<?php echo $res['fecha_entrada'];?>">
                                         </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <?php
-                            }
-                          ?>  
-                        </div>
-                        <!-- Entradas eliminadas -->
-                        <div class="col-md mb-4 mb-md-0">
-                            <h6 class="text-dark fw-semibold">
-                                <i class="bi bi-trash3"></i> &nbsp;
-                                Entradas Eliminadas
-                            </h6>
-                            <?php
-                            while($delete = mysqli_fetch_array($delete_query)) {	
-                              ?>                                            
-                            <div class="accordion mt-3" id="accordionExample">
-                                <div class="card accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button
-                                        type="button"
-                                        class="accordion-button collapsed"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#<?php echo str_replace(' ', '', $delete['titulo_entrada']) ?>"
-                                        aria-expanded="false"
-                                        aria-controls="<?php echo str_replace(' ', '', $delete['titulo_entrada']) ?>"
-                                        >
-                                        <?php echo $delete['titulo_entrada']." del ".$delete['fecha_entrada'] ?>
-                                        </button>
-                                    </h2>
-                                    <div
-                                      id="<?php echo str_replace(' ', '', $delete['titulo_entrada']) ?>"
-                                      class="accordion-collapse collapse"
-                                      aria-labelledby="headingTwo"
-                                      data-bs-parent="#accordionExample"
-                                    >
-                                        <div class="accordion-body">
-                                          <?php echo $delete['entrada']?>
-                                          <hr>
-                                          <span class="card-link">
-                                            <i class="bi bi-columns-gap"></i>
-                                            <?php echo $delete['categoria_entrada']?>
-                                          </span>
-                                          <span class="card-link">
-                                            <i class="bi bi-chat-square"></i>
-                                            <?php echo $delete['comentarios_entrada']?> Comentarios
-                                          </span>
-                                          <div class="demo-inline-spacing text-end">
-                                            <a 
-                                              href="restore_controller.php?id_entrada=<?php echo $delete['id_entrada']?>"
-                                              type="button" 
-                                              class="btn rounded-pill btn-outline-success"
-                                              >
-                                              <span class="tf-icons bx"><i class="bi bi-check-circle"></i></span> Restaurar
-                                            </a>
-                                          </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basic-default-company">Titulo entrada</label>
+                                            <input name="input_titulo" maxlength="50" type="text" class="form-control" id="basic-default-company" value="<?php echo $res['titulo_entrada'];?>">
                                         </div>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basic-default-email">Categoría</label>
+                                            <div class="input-group input-group-merge">
+                                                <input name="input_categoria" maxlength="30" type="text" id="basic-default-email" class="form-control" value="<?php echo $res['categoria_entrada'];?>" aria-label="john.doe" aria-describedby="basic-default-email2">
+                                            </div>
+                                            <div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basic-default-message">Entrada</label>
+                                            <textarea name="input_entrada" id="basic-default-message" class="form-control"><?php echo $res['titulo_entrada'];?></textarea>
+                                        </div>
+                                        <input type="submit" name="actualizar" class="btn btn-primary" value="Actualizar"/>
+                                    </form>
                                 </div>
                             </div>
-                            <?php
-                              }
-                            ?>  
                         </div>
+                        <?php
+                        }
+                        ?>  
                     </div>
                     <!--/ Accordion -->
                 </div>
@@ -455,94 +364,7 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <div class="buy-now">
-      <button href="#modal" class="btn btn-circle btn-primary btn-buy-now rounded-pill"
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#backDropModal">
-        <i class="bi bi-pencil-square"></i>
-      </button>
-      <!-- Modal -->
-      <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="modal-content" name="form-nueva-entrada" action="nueva_entrada.php" method="POST">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="backDropModalTitle">Añadir nueva entrada al blog</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-2">
-                      <div class="col mb-0">
-                        <label for="input_fecha" class="form-label">Fecha</label>
-                        <input
-                            name="input_fecha"
-                            type="text"
-                            id="input_fecha"
-                            class="form-control"
-                            placeholder="ej: 15 Sept 2022"
-                            required
-                        />
-                      </div>
-                      <div class="col mb-0">
-                        <label for="input_categoria" class="form-label">Categoría</label>
-                        <input 
-                            name="input_categoria"
-                            type="text"
-                            id="input_categoria"
-                            class="form-control"
-                            placeholder="Máximo 30 letras"
-                            maxlength="30"
-                            required
-                        />
-                      </div> 
-                    </div>
-                    <div class="row">
-                      <div class="col mb-0">
-                        <label for="input_titulo" class="form-label">Titulo</label>
-                        <input 
-                            name="input_titulo"
-                            type="text"
-                            id="input_titulo"
-                            class="form-control"
-                            placeholder="Máximo 50 letras"
-                            maxlength="50"
-                            required
-                        />
-                      </div> 
-                    </div>
-                    <div class="row">
-                        <div class="col mb-0">
-                        <label for="input_entrada" class="form-label">Entrada</label>
-                        <textarea 
-                            name="input_entrada" 
-                            class="form-control" 
-                            id="input_entrada" 
-                            rows="3"
-                            required
-                            >
-                        </textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <input 
-                      type="submit" 
-                      name="nueva_entrada" 
-                      class="btn btn-primary"
-                      value="Guardar"
-                      />
-                </div>
-            </form>
-        </div>
-    </div>
+    
     </div>
     <!-- Core JS -->
     <!-- build:js ../assets/vendor/js/core.js -->

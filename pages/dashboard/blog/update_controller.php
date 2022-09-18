@@ -16,7 +16,8 @@
         //including the database connection file
         include_once("../../php/sign-in/config.php");
 
-        if(isset($_POST['nueva_entrada'])) {	
+        if(isset($_POST['actualizar'])) {	
+			
             $fecha = $_POST['input_fecha'];
             $titulo = $_POST['input_titulo'];
             $entrada = $_POST['input_entrada'];
@@ -29,8 +30,8 @@
             $result = mysqli_query($mysqli, "INSERT INTO blog(fecha_entrada, titulo_entrada, entrada, categoria_entrada) VALUES('$fecha','$titulo','$entrada', '$categoria')");
             
             // //display success message
-            $_SESSION['message'] = 'Nueva entrada añadida al blog';
-            $_SESSION['message_type'] = 'success';
+            $_SESSION['message'] = 'Entrada actualizada';
+            $_SESSION['message_type'] = 'info';
 
             header('Location: admin-entrada.php');
         }
