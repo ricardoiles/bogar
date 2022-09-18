@@ -1,48 +1,4 @@
-<?php
-	require 'php/sign-in/config.php';
-
-	if(isset($_POST['login'])) {
-		$errMsg = '';
-
-		// Get data from FORM
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-
-		if($username == '')
-			$errMsg = 'Escribe el usuario';
-		if($password == '')
-			$errMsg = 'Escribe la contraseña';
-
-		if($errMsg == '') {
-			try {
-				$stmt = $connect->prepare('SELECT id_user, name, lastname, username, password FROM user WHERE username = :username');
-				$stmt->execute(array(
-					':username' => $username
-					));
-				$data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-				if($data == false){
-					$errMsg = "El usuario $username no existe.";
-				}
-				else {
-					if($password == $data['password']) {
-						$_SESSION['name'] = $data['name'];
-						$_SESSION['username'] = $data['username'];
-						$_SESSION['password'] = $data['password'];
-
-						header('Location: dashboard/dash.php');
-						exit;
-					}
-					else
-						$errMsg = 'La contraseña no coincide.';
-				}
-			}
-			catch(PDOException $e) {
-				$errMsg = $e->getMessage();
-			}
-		}
-	}
-?>
+<?php session_start(); ?>
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -97,7 +53,37 @@
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body  text-black">
-                <form action="" method="post">
+              <?php
+                // include("connection.php");
+                include('php/sign-in/config.php');
+
+                if(isset($_POST['login'])) {
+                  $user = mysqli_real_escape_string($mysqli, $_POST['username']);
+                  $pass = mysqli_real_escape_string($mysqli, $_POST['password']);
+
+                  $result = mysqli_query($mysqli, "SELECT * FROM user WHERE username='$user' AND password='$pass'")
+                        or die("Could not execute the select query.");
+                  
+                  $row = mysqli_fetch_assoc($result);
+                  
+                  if(is_array($row) && !empty($row)) {
+                    $validuser = $row['username'];
+                    $_SESSION['valid'] = $validuser;
+                    $_SESSION['name'] = $row['name'];
+                    $_SESSION['id'] = $row['id'];
+                  } else {
+                    echo "Usario o contraseñas incorrectos";
+                    echo "<br/>";
+                    echo "<a href='sign-in.php' class='text-danger'>Reintentar</a>";
+                  }
+
+                  if(isset($_SESSION['valid'])) {
+                    header('Location: dashboard/dash.php');			
+                  }
+                  
+                } else {
+              ?>
+                <form name="form-login" action="" method="post">
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <img src="../img/svg_icon/logocesarnuñez.png" alt="logocesarnuñez" width="70px"> &nbsp;
                     <span class="h1 fw-bold mb-0">César Nuñez</span>
@@ -110,10 +96,8 @@
                         }
                     ?>
                     <input name="username" type="text" id="form2Example17" class="form-control form-control-lg" 
-                           value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" 
                            placeholder="Usuario"/> <br>
                     <input name="password" type="password" id="form2Example27" class="form-control form-control-lg" 
-                           value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" 
                            placeholder="Contraseña"/> <br>
 
                     <input type="submit" name='login' class="btn btn-danger btn-lg btn-block" value="Ingresar"/> 
@@ -122,8 +106,10 @@
                     <a class="small text-muted" href="#">Olvide mi contraseña</a>
                   </div>
                 </form>
+              <?php
+                }
+              ?>
               </div>
-                
             </div>
           </div>
         </div>

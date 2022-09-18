@@ -1,9 +1,4 @@
-<?php
-	require '../php/sign-in/config.php';
-	if(empty($_SESSION['name']))
-		header('Location: ../sign-in.php');
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html
   lang="en"
@@ -229,16 +224,7 @@
                             </div>
                             <div class="flex-grow-1">
                                 <span class="fw-semibold d-block">
-                                    <?php
-                                        $sql = "SELECT * FROM user"; 
-                                        $query = $connect -> prepare($sql); 
-                                        $query -> execute(); 
-                                        $results = $query -> fetchAll(PDO::FETCH_OBJ); 
-
-                                        if($query -> rowCount() > 0)   { 
-                                            foreach($results as $result) { 
-                                                echo "".$result -> name." ". $result -> lastname; ?>
-                                           
+                                  <?php echo $_SESSION['valid'] ?>
                                 </span>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -281,11 +267,14 @@
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-8">
                         <div class="card-body">
-                          <h5 class="card-title text-primary">Bienvenido 
-                            <?php  
-                                echo "<span class='fw-bold'>".$result -> name."</span>";
-                               } }
-                            ?> <i class="bi bi-emoji-laughing"></i>
+                        <?php
+                          if(isset($_SESSION['valid'])) {				
+                            include('../php/sign-in/config.php');			
+                            $result = mysqli_query($mysqli, "SELECT * FROM user");
+                          }
+                        ?>
+                          <h5 class="card-title text-primary">Bienvenido <?php echo $_SESSION['name'] ?>
+                            <i class="bi bi-emoji-laughing"></i>
                             </h5>
                           <p class="mb-4">
                             Este es el panel de administración de tu portafolio, aquí podrás administrar tus datos de acceso, blog, servicios y datos sobre ti.

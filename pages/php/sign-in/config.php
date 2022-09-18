@@ -1,19 +1,15 @@
 <?php
-session_start();
 
-// Define database
-define('dbhost', 'localhost');
-define('dbuser', 'root');
-define('dbpass', '');
-define('dbname', 'bogar');
+/**
+ * mysql_connect is deprecated
+ * using mysqli_connect instead
+ */
 
-// Connecting database
-try {
-	$connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
-	$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch(PDOException $e) {
-	echo $e->getMessage();
-}
+$databaseHost = 'localhost';
+$databaseName = 'bogar';
+$databaseUsername = 'root';
+$databasePassword = '';
 
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+	
 ?>

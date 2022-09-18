@@ -1,9 +1,25 @@
+<?php session_start(); ?>
+
 <?php
-	require '../../php/sign-in/config.php';
-	if(empty($_SESSION['name']))
-		header('Location: ../sign-in.php');
+  if(isset($_SESSION['valid'])) {				
+    include('../../php/sign-in/config.php');			
+    $result = mysqli_query($mysqli, "SELECT * FROM user");
+  }
 ?>
 
+<?php
+if(!isset($_SESSION['valid'])) {
+	header('Location: ../../sign-in.php');
+}
+?>
+
+<?php
+//including the database connection file
+include_once("../../php/sign-in/config.php");
+
+//fetching data in descending order (lastest entry first)
+$result = mysqli_query($mysqli, "SELECT * FROM blog");
+?>
 <!DOCTYPE html>
 <html
   lang="en"
@@ -229,17 +245,7 @@
                             </div>
                             <div class="flex-grow-1">
                                 <span class="fw-semibold d-block">
-                                    <?php
-                                        $sql = "SELECT * FROM user"; 
-                                        $query = $connect -> prepare($sql); 
-                                        $query -> execute(); 
-                                        $results = $query -> fetchAll(PDO::FETCH_OBJ); 
-
-                                        if($query -> rowCount() > 0)   { 
-                                            foreach($results as $result) { 
-                                                echo "".$result -> name." ". $result -> lastname;
-                                        } }
-                                    ?>
+                                  <?php echo $_SESSION['valid'] ?>
                                 </span>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -259,7 +265,7 @@
                         <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                        <a class="dropdown-item" href="../php/sign-in/logout.php">
+                        <a class="dropdown-item" href="../../php/sign-in/logout.php">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Cerrar sesión</span>
                         </a>
@@ -270,12 +276,19 @@
                 </ul>
                 </div>
             </nav>
-            <!-- / Navbar -->
-
+            <!-- / Navbar -->            
           <!-- Content wrapper -->
           <div class="content-wrapper">
+            
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- message nueva entrada -->
+              <?php if (isset($_SESSION['message'])) { ?>
+                <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible" role="alert">
+                  <?= $_SESSION['message']?>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              <?php } ?>
               <div class="row">
                 <!-- Order Statistics -->
                 <div class="col-md-12 col-lg-12 col-xl-12 order-0 mb-4">
@@ -288,65 +301,40 @@
                                 Entradas publicadas
                             </h6>
                             <?php
-                                $sql = "SELECT * FROM blog where estado_entrada = 1"; 
-                                $query = $connect -> prepare($sql); 
-                                $query -> execute(); 
-                                $results = $query -> fetchAll(PDO::FETCH_OBJ); 
-
-                                if($query -> rowCount() > 0)   { 
-                                    foreach($results as $result) { 
-                                        $id= $result -> titulo_entrada;
-                                        $id_entrada =str_replace(' ', '', $id);
-
-                                    echo '
-                                    <div class="accordion mt-3" id="accordionExample">
-                                        <div class="card accordion-item">
-                                            <h2 class="accordion-header" id="headingTwo">
-                                                <button
-                                                type="button"
-                                                class="accordion-button collapsed"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#'.$id_entrada.'"
-                                                aria-expanded="false"
-                                                aria-controls="'.$id_entrada.'"
-                                                ><b>'.
-                                                $result -> titulo_entrada.'</b> &nbsp; del &nbsp; <span class="text-body">'.$result -> fecha_entrada.'
-                                                </span></button>
-                                            </h2>
-                                            <div
-                                                id="'.$id_entrada.'"
-                                                class="accordion-collapse collapse"
-                                                aria-labelledby="headingTwo"
-                                                data-bs-parent="#accordionExample"
-                                            >
-                                                <div class="accordion-body">
-                                                    '.$result -> entrada.'
-                                                    <hr>
-                                                    <span class="card-link">
-                                                        <i class="bi bi-columns-gap"></i>
-                                                        '.$result -> categoria_entrada.'
-                                                    </span> 
-                                                    <span class="card-link">
-                                                        <i class="bi bi-chat-square"></i>
-                                                        '.$result -> comentarios_entrada.' Comentarios
-                                                    </span>
-                                                    <div class="demo-inline-spacing">
-                                                        <button type="button" class="btn rounded-pill btn-outline-primary">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </button>
-                                                        <button type="button" class="btn rounded-pill btn-outline-info">
-                                                            <i class="bi bi-eye"></i>
-                                                        </button>
-                                                        <button type="button" class="btn rounded-pill btn-outline-danger">
-                                                            <i class="bi bi-trash3"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                              while($res = mysqli_fetch_array($result)) {	
+                                ?>
+                                
+                                <!-- echo "<td><a href=\"edit.php?id=$res[id_entrada]\">Edit</a> | <a href=\"delete.php?id=$res[id_entrada]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		 -->
+                                            
+                            <div class="accordion mt-3" id="accordionExample">
+                                <div class="card accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button
+                                        type="button"
+                                        class="accordion-button collapsed"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
+                                        aria-expanded="false"
+                                        aria-controls="<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
+                                        >
+                                        <?php echo $res['titulo_entrada']." del ".$res['fecha_entrada'] ?>
+                                        </button>
+                                    </h2>
+                                    <div
+                                      id="<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
+                                      class="accordion-collapse collapse"
+                                      aria-labelledby="headingTwo"
+                                      data-bs-parent="#accordionExample"
+                                    >
+                                        <div class="accordion-body">
+                                          <?php echo $res['entrada']?>
                                         </div>
-                                    </div>';
-                                    } }
-                            ?>                            
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            }
+                          ?>  
                         </div>
                         <!-- Entradas eliminadas -->
                         <div class="col-md mb-4 mb-md-0">
@@ -430,7 +418,7 @@
       <!-- Modal -->
       <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
         <div class="modal-dialog">
-            <form class="modal-content">
+            <form class="modal-content" name="form-nueva-entrada" action="nueva_entrada.php" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="backDropModalTitle">Añadir nueva entrada al blog</h5>
                     <button
@@ -442,56 +430,67 @@
                 </div>
                 <div class="modal-body">
                     <div class="row g-2">
-                        <div class="col mb-0">
-                        <label for="emailBackdrop" class="form-label">Fecha</label>
+                      <div class="col mb-0">
+                        <label for="input_fecha" class="form-label">Fecha</label>
                         <input
+                            name="input_fecha"
                             type="text"
-                            id="emailBackdrop"
+                            id="input_fecha"
                             class="form-control"
-                            placeholder="xxxx@xxx.xx"
+                            placeholder="ej: 15 Sept 2022"
+                            required
                         />
-                        </div>
-                        <div class="col mb-0">
-                        <label for="dobBackdrop" class="form-label">Titulo entrada</label>
-                        <input
+                      </div>
+                      <div class="col mb-0">
+                        <label for="input_categoria" class="form-label">Categoría</label>
+                        <input 
+                            name="input_categoria"
                             type="text"
-                            id="dobBackdrop"
+                            id="input_categoria"
                             class="form-control"
-                            placeholder="DD / MM / YY"
+                            placeholder="Máximo 30 letras"
+                            maxlength="30"
+                            required
                         />
-                        </div>
+                      </div> 
+                    </div>
+                    <div class="row">
+                      <div class="col mb-0">
+                        <label for="input_titulo" class="form-label">Titulo</label>
+                        <input 
+                            name="input_titulo"
+                            type="text"
+                            id="input_titulo"
+                            class="form-control"
+                            placeholder="Máximo 50 letras"
+                            maxlength="50"
+                            required
+                        />
+                      </div> 
                     </div>
                     <div class="row">
                         <div class="col mb-0">
-                        <label for="emailBackdrop" class="form-label">Entrada</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                        <label for="emailBackdrop" class="form-label">Categoria entrada</label>
-                        <input
-                            type="text"
-                            id="emailBackdrop"
-                            class="form-control"
-                            placeholder="xxxx@xxx.xx"
-                        />
-                        </div>
-                        <div class="col mb-0">
-                        <label for="dobBackdrop" class="form-label">DOB</label>
-                        <input
-                            type="text"
-                            id="dobBackdrop"
-                            class="form-control"
-                            placeholder="DD / MM / YY"
-                        />
-                        </div>
+                        <label for="input_entrada" class="form-label">Entrada</label>
+                        <textarea 
+                            name="input_entrada" 
+                            class="form-control" 
+                            id="input_entrada" 
+                            rows="3"
+                            required
+                            >
+                        </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
+                        Cancelar
                     </button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <input 
+                      type="submit" 
+                      name="nueva_entrada" 
+                      class="btn btn-primary"
+                      value="Guardar"
+                      />
                 </div>
             </form>
         </div>
