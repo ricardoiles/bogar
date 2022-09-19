@@ -90,7 +90,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORD
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
+                                <a class="d-inline-block" href="single-blog.php?id_blog=<?php echo $res['titulo_entrada']?>">
                                     <h2><?php echo $res['titulo_entrada']?></h2>
                                 </a>
                                 <p><?php echo $res['entrada']?></p>
