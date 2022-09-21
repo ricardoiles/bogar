@@ -17,10 +17,16 @@
             //insert data to database	
             $result = mysqli_query($mysqli, "INSERT INTO comentarios_blog(id_entrada, usuario, email, comentario) 
                                             VALUES('$id_entrada','$usuario','$email', '$comentario')");
+
+            // consultar cantidad de comentarios que tiene la entrada que se comento
+            $comentarios = mysqli_query($mysqli, "SELECT id_entrada FROM comentarios_blog 
+                                                WHERE id_entrada = ".$_POST['id_entrada']);
             
-            // //display success message
-            $_SESSION['message'] = 'Comentario creado';
-            $_SESSION['message_type'] = 'success';
+            // cantidad de comentarios en esta entrada
+            $comentarios = mysqli_num_rows( $comentarios );
+                
+            // guardar cant. de comentarios en tabla blog
+            $cantidad_comentarios = mysqli_query($mysqli, "UPDATE blog set comentarios_entrada = ".$comentarios." WHERE id_entrada = ".$id_entrada);
             
             // volver al single page donde se comento
             header('Location: ../single-blog.php?id_blog='.$_POST['title']);
