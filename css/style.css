@@ -6838,10 +6838,10 @@ h6 {
 
 /* line 1314, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
 .comments-area {
-  background: transparent;
-  border-top: 1px solid #eee;
+  /* background: transparent;
+  border-top: 1px solid #eee; */
   padding: 45px 0;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 @media (max-width: 414px) {
