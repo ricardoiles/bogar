@@ -8,7 +8,7 @@
 
 <html>
 <head>
-	<title>Add Data</title>
+	<title>Update Data</title>
 </head>
 
 <body>

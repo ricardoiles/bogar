@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html
-  lang="en"
+  lang="es"
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
@@ -46,7 +46,7 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-        <?php include("sidenav.html")?>
+        <?php include("../../components/sidenav_dashboard.html")?>
         <!-- / Menu -->
 
         <!-- Layout container -->
@@ -68,7 +68,7 @@
                 <!-- /Search -->
 
                 <!-- user options -->
-                <?php require("user_options.php") ?>
+                <?php include("../../components/userDropdown_dashboard.php")?>
                 <!-- end user options -->
               </div>
           </nav>
@@ -86,7 +86,7 @@
                         <div class="card-body">
                         <?php
                           if(isset($_SESSION['valid'])) {				
-                            include('../php/sign-in/config.php');			
+                            include('../../connection/config.php');			
                             $result = mysqli_query($mysqli, "SELECT * FROM user");
                           }
                         ?>

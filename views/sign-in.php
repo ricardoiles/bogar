@@ -17,17 +17,9 @@
 
     <!-- CSS here -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
+    
     <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/themify-icons.css">
-    <link rel="stylesheet" href="../css/nice-select.css">
-    <link rel="stylesheet" href="../css/audioplayer.css">
-    <link rel="stylesheet" href="../css/flaticon.css">
-    <link rel="stylesheet" href="../css/gijgo.css">
-    <link rel="stylesheet" href="../css/animate.css">
-    <link rel="stylesheet" href="../css/slick.css">
-    <link rel="stylesheet" href="../css/slicknav.css">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/customstyles.css">
     <!-- icons bootstrap -->
@@ -55,7 +47,7 @@
               <div class="card-body  text-black">
               <?php
                 // include("connection.php");
-                include('php/sign-in/config.php');
+                include('../connection/config.php');
 
                 if(isset($_POST['login'])) {
                   $user = mysqli_real_escape_string($mysqli, $_POST['username']);
@@ -104,6 +96,7 @@
                     <hr>
 
                     <a class="small text-muted" href="#">Olvide mi contraseña</a>
+                    <a class="small text-muted" href="../">| Ver tu portafolio</a>
                   </div>
                 </form>
               <?php

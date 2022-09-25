@@ -1,18 +1,3 @@
- <!-- contact_rsvp -->
-    <div class="contact_rsvp">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="text text-center">
-                        <h3>Contáctame para recibir clases</h3>
-                        <a class="boxed-btn3" href="contact.php">Contáctame</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!--/ contact_rsvp -->
-
 <!-- footer start -->
     <footer class="footer">
         <div class="footer_top">
@@ -20,16 +5,10 @@
                 <div class="row">
                     <div id="suscribe" class="col-xl-6 col-md-6">
                         <div class="footer_widget">
-                                <h3 class="footer_title">
-                                        Obten mis servicios
-                                </h3>
-                            <div class="subscribe-from">
-                                <form action="#">
-                                    <input type="text" placeholder="Escribe tu email">
-                                    <button type="submit" >Suscribirme</button>
-                                </form>
+                            <div class="text text-center">
+                                <h3 class="text-white">Contáctame para recibir clases</h3>
+                                <a class="boxed-btn3" href="contact.php">Contáctame</a>
                             </div>
-                            <p class="sub_text">Suscríbete y me pondré en contacto contigo lo mas pronto posible.</p>
                         </div>
                     </div>
                     <div class="col-xl-5 col-md-5 offset-xl-1">
@@ -50,22 +29,27 @@
                                 <ul>
                                     <li>
                                         <a href="#">
-                                            <i class=" fa fa-facebook "></i>
+                                            <i class="bi bi-facebook"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-twitter"></i>
+                                            <i class="bi bi-whatsapp"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-youtube-play"></i>
+                                            <i class="bi bi-youtube"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-instagram"></i>
+                                            <i class="bi bi-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="bi bi-tiktok"></i>
                                         </a>
                                     </li>
                                 </ul>

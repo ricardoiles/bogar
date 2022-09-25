@@ -2057,8 +2057,8 @@ h3 {
   border-bottom: noe;
   border-left: none;
   top: -8px;
-  content: "\f100";
-  font-family: Flaticon;
+  content: "\f028";
+  font-family: "Font Awesome 5 Free";
   color: #fff;
   font-weight: 900;
 }
@@ -2133,8 +2133,8 @@ h3 {
   border-bottom: noe;
   border-left: none;
   top: -8px;
-  content: "\f100";
-  font-family: Flaticon;
+  content: "\f028";
+  font-family: "Font Awesome 5 Free";
   color: #ED1B1B;
   font-weight: 900;
 }
@@ -3109,27 +3109,27 @@ h3 {
 /* line 232, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li a:hover {
   color: #fff !important;
-  background: #ED1B1B;
+  /* background: #ED1B1B; */
 }
 
 /* line 237, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(2) a {
-  background: #DB4337;
+  background: green;
 }
 
 /* line 240, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(3) a {
-  background: #00ACED;
+  background: red;
 }
 
 /* line 243, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(4) a {
-  background: #BB0000;
+  background: #920f90;
 }
 
 /* line 246, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(5) a {
-  background: #AC907A;
+  background: black;
 }
 
 /* line 1, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_bradcam.scss */
