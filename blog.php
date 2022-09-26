@@ -42,27 +42,35 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORD
                     <div class="blog_left_sidebar">
                     <?php
                     while($res = mysqli_fetch_array($result)) {	
+                        
                         ?>   
                         <article class="blog_item bogar-article-card">
                             <div class="blog_item_img">
                                 <a href="#" class="blog_item_date">
                                     <h3>
                                         <?php 
-                                            $val = explode(" ", $res['fecha_entrada']);
-                                            echo $val[0];
+                                            $date = date('d F Y', strtotime($res['creacion_entrada']));
+                                            $date = explode(" ", $date);
+                                            echo $date[0];
                                         ?>
                                     </h3>
                                     <p>
                                         <?php 
-                                            $val = explode(" ", $res['fecha_entrada']);
-                                            echo $val[1];
+                                           $date = date('d F Y', strtotime($res['creacion_entrada']));
+                                           $date = explode(" ", $date);
+                                           echo $date[1];
+                                        ?>
+                                        <?php 
+                                           $date = date('d F Y', strtotime($res['creacion_entrada']));
+                                           $date = explode(" ", $date);
+                                           echo $date[2];
                                         ?>
                                     </p>
                                 </a>
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.php?id_blog=<?php echo $res['titulo_entrada']?>">
+                                <a class="d-inline-block" href="single-blog.php?id_blog=<?php echo $res['id_entrada']?>">
                                     <h2><?php echo $res['titulo_entrada']?></h2>
                                 </a>
                                 <p><?php echo $res['entrada']?></p>

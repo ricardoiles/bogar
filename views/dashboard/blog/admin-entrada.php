@@ -18,10 +18,10 @@ if(!isset($_SESSION['valid'])) {
 include_once("../../../connection/config.php");
 
 //fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORDER BY creacion_entrada desc");
+$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORDER BY fecha_entrada desc");
 
 // query entradas eliminadas
-$delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 0 ORDER BY creacion_entrada desc");
+$delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 0 ORDER BY eliminacion_entrada desc");
 ?>
 
 <?php 
@@ -86,7 +86,10 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                           </h6>
                           <?php
                             while($res = mysqli_fetch_array($result)) {	
-                              ?>                                            
+                            // quitar caracteres y espacios al titulo
+                            $str = $res['titulo_entrada'];
+                            $string = preg_replace('/[0-9\@\(\)\,\-\_\º\&\$\.\;\" "]+/', '', $str);
+                          ?>                                            
                           <div class="accordion mt-3" id="accordionExample">
                               <div class="card accordion-item">
                                   <h2 class="accordion-header" id="headingTwo">
@@ -94,21 +97,23 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                                       type="button"
                                       class="accordion-button collapsed"
                                       data-bs-toggle="collapse"
-                                      data-bs-target="#<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
+                                      data-bs-target="#<?php echo $string ?>"
                                       aria-expanded="false"
-                                      aria-controls="<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
+                                      aria-controls="<?php echo $string ?>"
                                       >
-                                      <?php echo $res['titulo_entrada']." del ".$res['fecha_entrada'] ?>
+                                      <?php 
+                                        echo $res['titulo_entrada']." <span class='text-secondary'>&nbsp; &middot; &nbsp;</span> <span class='text-primary'>".$res['fecha_entrada']."</span>" ?>
                                       </button>
                                   </h2>
                                   <div
-                                    id="<?php echo str_replace(' ', '', $res['titulo_entrada']) ?>"
+                                    id="<?php echo $string ?>"
                                     class="accordion-collapse collapse"
                                     aria-labelledby="headingTwo"
                                     data-bs-parent="#accordionExample"
                                   >
                                       <div class="accordion-body">
                                         <?php echo $res['entrada']?>
+                                        
                                         <hr>
                                         <span class="card-link">
                                           <i class="bi bi-columns-gap"></i>
@@ -126,11 +131,13 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                                             >
                                             <span class="tf-icons bx"><i class="bi bi-pencil"></i></span>
                                           </a>
-                                          <button type="button" class="btn rounded-pill btn-icon btn-outline-secondary">
-                                            <span class="tf-icons bx "><i class="bi bi-eye"></i></span>
-                                          </button>
                                           <a
-                                            href="delete_controller.php?id_entrada=<?php echo $res['id_entrada']?>"
+                                            href="../../../single-blog.php?id_blog=<?php echo $res['id_entrada']?>" target="_blank"
+                                            type="button" class="btn rounded-pill btn-icon btn-outline-secondary">
+                                            <span class="tf-icons bx "><i class="bi bi-eye"></i></span>
+                                          </a>
+                                          <a
+                                            href="../../../controllers/blog/delete_entradaController.php?id_entrada=<?php echo $res['id_entrada']?>"
                                             type="button" class="btn rounded-pill btn-icon btn-outline-danger">
                                             <span class="tf-icons bx "><i class="bi bi-trash3"></i></span>
                                           </a>
@@ -151,6 +158,10 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                             </h6>
                             <?php
                             while($delete = mysqli_fetch_array($delete_query)) {	
+                            
+                            $str = $delete['titulo_entrada'];
+                            $string = preg_replace('/[0-9\@\(\)\,\-\_\º\&\$\.\;\" "]+/', '', $str);
+                                                            
                               ?>                                            
                             <div class="accordion mt-3" id="accordionExample">
                                 <div class="card accordion-item">
@@ -159,15 +170,15 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                                         type="button"
                                         class="accordion-button collapsed"
                                         data-bs-toggle="collapse"
-                                        data-bs-target="#<?php echo str_replace(' ', '', $delete['titulo_entrada']) ?>"
+                                        data-bs-target="#<?php echo $string ?>"
                                         aria-expanded="false"
-                                        aria-controls="<?php echo str_replace(' ', '', $delete['titulo_entrada']) ?>"
+                                        aria-controls="<?php echo $string ?>"
                                         >
-                                        <?php echo $delete['titulo_entrada']." del ".$delete['fecha_entrada'] ?>
+                                        <?php echo $delete['titulo_entrada']." <span class='text-secondary'>&nbsp; &middot; &nbsp;</span> <span class='text-danger'>".$delete['eliminacion_entrada']."</span>" ?>
                                         </button>
                                     </h2>
                                     <div
-                                      id="<?php echo str_replace(' ', '', $delete['titulo_entrada']) ?>"
+                                      id="<?php echo $string ?>"
                                       class="accordion-collapse collapse"
                                       aria-labelledby="headingTwo"
                                       data-bs-parent="#accordionExample"
@@ -185,7 +196,7 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                                           </span>
                                           <div class="demo-inline-spacing text-end">
                                             <a 
-                                              href="restore_controller.php?id_entrada=<?php echo $delete['id_entrada']?>"
+                                              href="../../../controllers/blog/restore_entradaController.php?id_entrada=<?php echo $delete['id_entrada']?>"
                                               type="button" 
                                               class="btn rounded-pill btn-outline-success"
                                               >
@@ -244,86 +255,11 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
             data-bs-target="#backDropModal">
         <i class="bi bi-pencil-square"></i>
       </button>
-      <!-- Modal -->
-      <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="modal-content" name="form-nueva-entrada" action="nueva_entrada.php" method="POST">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="backDropModalTitle">Añadir nueva entrada al blog</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-2">
-                      <div class="col mb-0">
-                        <label for="input_fecha" class="form-label">Fecha</label>
-                        <input
-                            name="input_fecha"
-                            type="text"
-                            id="input_fecha"
-                            class="form-control"
-                            placeholder="ej: 15 Sept 2022"
-                            required
-                        />
-                      </div>
-                      <div class="col mb-0">
-                        <label for="input_categoria" class="form-label">Categoría</label>
-                        <input 
-                            name="input_categoria"
-                            type="text"
-                            id="input_categoria"
-                            class="form-control"
-                            placeholder="Máximo 30 letras"
-                            maxlength="30"
-                            required
-                        />
-                      </div> 
-                    </div>
-                    <div class="row">
-                      <div class="col mb-0">
-                        <label for="input_titulo" class="form-label">Titulo</label>
-                        <input 
-                            name="input_titulo"
-                            type="text"
-                            id="input_titulo"
-                            class="form-control"
-                            placeholder="Máximo 50 letras"
-                            maxlength="50"
-                            required
-                        />
-                      </div> 
-                    </div>
-                    <div class="row">
-                        <div class="col mb-0">
-                        <label for="input_entrada" class="form-label">Entrada</label>
-                        <textarea 
-                            name="input_entrada" 
-                            class="form-control" 
-                            id="input_entrada" 
-                            rows="3"
-                            required
-                            >
-                        </textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <input 
-                      type="submit" 
-                      name="nueva_entrada" 
-                      class="btn btn-primary"
-                      value="Guardar"
-                      />
-                </div>
-            </form>
-        </div>
-    </div>
+      <!-- Modal nueva entrada -->
+      <?php 
+        require('../../../components/modal_nuevaEntrada.html');
+      ?>
+      <!-- end modal nueva entrada -->
     </div>
     <!-- Core JS -->
     <!-- build:js ../assets/vendor/js/core.js -->

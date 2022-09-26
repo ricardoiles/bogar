@@ -105,3 +105,39 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+/* tabs dashboard */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.nav-tabs {
+  border-bottom: 1px solid #fff0;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.nav .nav-item, .nav .nav-link, .tab-pane, .tab-pane .card-body {
+  outline: none !important;
+}
+.tab-content {
+  /* padding: 1.5rem; */
+  border-radius: 0.375rem;
+}
+.tab-pane {
+  margin-left: -1.5rem !important;
+}
+/* end tabs dashboard */

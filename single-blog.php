@@ -3,9 +3,9 @@
 include_once("connection/config.php");
 
 //fetching data in descending order (lastest entry first)
-$title = $_GET['id_blog'];
+$id = $_GET['id_blog'];
 
-$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE titulo_entrada = '".$title."'");
+$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE id_entrada = '".$id."'");
 
 ?>
 
@@ -94,7 +94,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE titulo_entrada = '".$t
                </div>
                <div class="comment-form">
                   <h4>Deja un comentario</h4>
-                  <form class="form-contact comment_form" action="controllers/comentarController.php" method="post" id="commentForm">
+                  <form class="form-contact comment_form" action="controllers/blog/comentar_entradaController.php" method="post" id="commentForm">
                      <div class="row">
                         <!-- titulo de la entrada -->
                         <input name="title" type="hidden" value="<?php echo $res['titulo_entrada']?>">

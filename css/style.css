@@ -1261,12 +1261,12 @@ h3 {
 
 /* line 1, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/bogar.jpg);
+  background-image: url(../img/banner/banner.png);
 }
 
 /* line 4, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_slider.scss */
 .slider_bg_2 {
-  background-image: url(../img/banner/bogar.jpg);
+  background-image: url(../img/banner/banner2.png);
 }
 
 /* line 8, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_slider.scss */
@@ -1288,8 +1288,8 @@ h3 {
 .slider_area .single_slider .slider_text h3 {
   color: #FFF;
   font-family: "Josefin Sans", sans-serif;
-  font-size: 110px;
-  text-transform: unset;
+  font-size: 120px;
+  text-transform: uppercase;
   font-weight: 600;
 }
 
@@ -1755,7 +1755,7 @@ h3 {
 /* line 1, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_area {
   position: relative;
-  margin-top: -172px;
+  margin-top: -148px;
 }
 
 @media (max-width: 767px) {
@@ -1796,7 +1796,7 @@ h3 {
   flex-direction: row-reverse;
   z-index: 2;
   height: 8px;
-  background: #ED1B1B;
+  background: #615CFD;
   border-radius: 30px;
 }
 
@@ -1931,7 +1931,7 @@ h3 {
   top: 0;
   left: 0;
   height: 8px;
-  background-color: #ED1B1B;
+  background-color: #615CFD;
   border-radius: 30px;
 }
 
@@ -2057,8 +2057,8 @@ h3 {
   border-bottom: noe;
   border-left: none;
   top: -8px;
-  content: "\f028";
-  font-family: "Font Awesome 5 Free";
+  content: "\f100";
+  font-family: Flaticon;
   color: #fff;
   font-weight: 900;
 }
@@ -2071,12 +2071,12 @@ h3 {
 /* line 235, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_gallery .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
   background: rgba(91, 130, 255, 0);
-  border: 1px solid #ED1B1B !important;
+  border: 1px solid #615CFD !important;
 }
 
 /* line 239, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_gallery .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
-  border-left: 12px solid #ED1B1B !important;
+  border-left: 12px solid #615CFD !important;
 }
 
 /* line 242, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
@@ -2098,7 +2098,7 @@ h3 {
   top: -4px;
   content: "\f100";
   font-family: Flaticon;
-  color: #ED1B1B;
+  color: #615CFD;
   font-weight: 900;
 }
 
@@ -2133,9 +2133,9 @@ h3 {
   border-bottom: noe;
   border-left: none;
   top: -8px;
-  content: "\f028";
-  font-family: "Font Awesome 5 Free";
-  color: #ED1B1B;
+  content: "\f100";
+  font-family: Flaticon;
+  color: #615CFD;
   font-weight: 900;
 }
 
@@ -2978,7 +2978,7 @@ h3 {
 /* line 149, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .footer_top .subscribe-from button {
   border: none;
-  background: #ED1B1B;
+  background: #615CFD;
   padding: 12px 40px;
   display: inline-block;
   font-size: 15px;
@@ -3109,27 +3109,27 @@ h3 {
 /* line 232, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li a:hover {
   color: #fff !important;
-  /* background: #ED1B1B; */
+  background: #ED1B1B;
 }
 
 /* line 237, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(2) a {
-  background: green;
+  background: #DB4337;
 }
 
 /* line 240, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(3) a {
-  background: red;
+  background: #00ACED;
 }
 
 /* line 243, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(4) a {
-  background: #920f90;
+  background: #BB0000;
 }
 
 /* line 246, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_footer.scss */
 .footer .socail_links ul li:nth-child(5) a {
-  background: black;
+  background: #AC907A;
 }
 
 /* line 1, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_bradcam.scss */
@@ -3139,7 +3139,7 @@ h3 {
 
 /* line 4, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_bradcam.scss */
 .breadcam_bg_2 {
-  background-image: url(../img/banner/bogar_about.jpg);
+  background-image: url(../img/banner/bradcam_2.png);
 }
 
 /* line 7, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_bradcam.scss */
@@ -5665,7 +5665,7 @@ h6 {
 
 /* line 14, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
 .blog_area a:hover, .blog_area a :hover {
-  background: -webkit-linear-gradient(131deg, #ED1B1B 0%, #ED1B1B 99%);
+  background: -webkit-linear-gradient(131deg, #615CFD 0%, #615CFD 99%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
@@ -6176,7 +6176,7 @@ h6 {
 
 /* line 544, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
 .blog_details a:hover {
-  color: #ED1B1B;
+  color: #615CFD;
 }
 
 /* line 549, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
@@ -6244,7 +6244,7 @@ h6 {
   left: 10px;
   display: block;
   color: #fff;
-  background-color: #ED1B1B;
+  background-color: #615CFD;
   padding: 8px 15px;
   border-radius: 5px;
 }
@@ -6472,7 +6472,7 @@ h6 {
 
 /* line 842, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
 .blog_right_sidebar .tag_cloud_widget ul li a:hover {
-  background: #ED1B1B;
+  background: #615CFD;
   color: #fff !important;
   -webkit-text-fill-color: #fff;
   text-decoration: none;
@@ -6720,7 +6720,7 @@ h6 {
 
 /* line 1208, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
 .single-post-area .blog-author a:hover {
-  color: #ED1B1B;
+  color: #615CFD;
 }
 
 /* line 1213, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
@@ -6838,10 +6838,10 @@ h6 {
 
 /* line 1314, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog.scss */
 .comments-area {
-  /* background: transparent;
-  border-top: 1px solid #eee; */
+  background: transparent;
+  border-top: 1px solid #eee;
   padding: 45px 0;
-  /* margin-top: 50px; */
+  margin-top: 50px;
 }
 
 @media (max-width: 414px) {
@@ -7149,7 +7149,7 @@ h6 {
 
 /* line 72, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_blog_part.scss */
 .blog_part .single-home-blog .card .card-body a {
-  color: #ED1B1B;
+  color: #615CFD;
   text-transform: uppercase;
   -webkit-transition: 0.8s;
   transition: 0.8s;
@@ -7176,7 +7176,7 @@ h6 {
   height: 10px;
   top: 5px;
   left: 0;
-  background-color: #ED1B1B;
+  background-color: #615CFD;
   border-radius: 50%;
 }
 

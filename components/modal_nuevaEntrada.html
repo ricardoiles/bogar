@@ -1,0 +1,80 @@
+<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <form class="modal-content" name="form-nueva-entrada" action="../../../controllers/blog/create_entradaController.php" method="POST">
+            <div class="modal-header">
+                <h5 class="modal-title" id="backDropModalTitle">Añadir nueva entrada al blog</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <label for="input_fecha" class="form-label">Fecha</label>
+                        <input
+                            name="input_fecha"
+                            type="text"
+                            id="input_fecha"
+                            class="form-control"
+                            placeholder="ej: 15 Sept 2022"
+                            required
+                        />
+                    </div>
+                    <div class="col mb-0">
+                        <label for="input_categoria" class="form-label">Categoría</label>
+                        <input 
+                            name="input_categoria"
+                            type="text"
+                            id="input_categoria"
+                            class="form-control"
+                            placeholder="Máximo 30 letras"
+                            maxlength="30"
+                            required
+                        />
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col mb-0">
+                        <label for="input_titulo" class="form-label">Titulo</label>
+                        <input 
+                            name="input_titulo"
+                            type="text"
+                            id="input_titulo"
+                            class="form-control"
+                            placeholder="Máximo 50 letras"
+                            maxlength="50"
+                            required
+                        />
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col mb-0">
+                        <label for="input_entrada" class="form-label">Entrada</label>
+                        <textarea 
+                            name="input_entrada" 
+                            class="form-control" 
+                            id="input_entrada" 
+                            rows="3"
+                            required
+                            placeholder="Escribe aquí el contenido de la entrada"
+                        >
+                    </textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <input 
+                    type="submit" 
+                    name="nueva_entrada" 
+                    class="btn btn-primary"
+                    value="Guardar"
+                    />
+            </div>
+        </form>
+    </div>
+</div>

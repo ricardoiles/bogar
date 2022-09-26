@@ -6,7 +6,7 @@
 <body>
     <?php
         //including the database connection file
-        include_once("../pages/php/sign-in/config.php");
+        include_once("../../connection/config.php");
 
         if(isset($_POST['nuevo_comentario'])) {	
             $id_entrada = $_POST['id_entrada'];
@@ -29,7 +29,7 @@
             $cantidad_comentarios = mysqli_query($mysqli, "UPDATE blog set comentarios_entrada = ".$comentarios." WHERE id_entrada = ".$id_entrada);
             
             // volver al single page donde se comento
-            header('Location: ../single-blog.php?id_blog='.$_POST['title']);
+            header('Location: ../../single-blog.php?id_blog='.$id_entrada);
         }
     ?>
 </body>
