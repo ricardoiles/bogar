@@ -7,7 +7,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="index.php">
                                     <img src="img/svg_icon/logonaveducador.svg" alt="" width="150px">
                                 </a>
                             </div>

@@ -31,7 +31,7 @@
                 <div class="col-xl-10">
                     <div class="row align-items-center">
                                 <div class="col-xl-9 col-md-9">
-                                    <div class="music_field">
+                                    <div class="music_field" style="margin-top: -20px">
                                             <div class="thumb">
                                                     <img src="img/music_man/1.jpg" alt="" width="160px">
                                                 </div>
@@ -109,7 +109,7 @@
                         <div class="hover_elements">
                             <div class="video">
                                     <a class="" href="https://youtu.be/1n9WygeAlGA?list=PLhK0Suwe2zippQwqrSk__zO5Hkx1VNADe" target="_blank"> 
-                                            <i class="fa fa-play"></i>
+                                            <i class="bi bi-play-fill"></i>
                                         </a>
                             </div>
 
@@ -129,7 +129,7 @@
                         <div class="hover_elements">
                             <div class="video">
                                 <a class="" href="https://youtu.be/5a3m4ppGIX0?list=PLhK0Suwe2zippQwqrSk__zO5Hkx1VNADe" target="_blank"> 
-                                    <i class="fa fa-play"></i>
+                                    <i class="bi bi-play-fill"></i>
                                 </a>
                             </div>
 
@@ -149,7 +149,7 @@
                         <div class="hover_elements">
                             <div class="video">
                                 <a class="" href="https://www.youtube.com/watch?v=wS00JFjEdIs&list=PLhK0Suwe2zippQwqrSk__zO5Hkx1VNADe&index=2" target="_blank"> 
-                                    <i class="fa fa-play"></i>
+                                    <i class="bi bi-play-fill"></i>
                                 </a>
                             </div>
 
@@ -169,7 +169,7 @@
                         <div class="hover_elements">
                             <div class="video">
                                     <a class="" href="https://youtu.be/13YcgFd08e0?list=PLhK0Suwe2zirktJPtIv1tJWFDs-8TeIOS" target="_blank"> 
-                                            <i class="fa fa-play"></i>
+                                            <i class="bi bi-play-fill"></i>
                                         </a>
                             </div>
 
