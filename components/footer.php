@@ -33,7 +33,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="https://wa.me/525537178947" class="bg-success" target="_blank">
                                             <i class="bi bi-whatsapp"></i>
                                         </a>
                                     </li>
@@ -48,8 +48,18 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="#"  class="bg-secondary">
                                             <i class="bi bi-tiktok"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" > 
+                                            <img width="13px" src="./img/svg_icon/platzi.svg"> 
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="bg-success"> 
+                                            <img width="13px" src="./img/svg_icon/linktree.svg"> 
                                         </a>
                                     </li>
                                 </ul>

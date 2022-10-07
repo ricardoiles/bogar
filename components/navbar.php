@@ -29,8 +29,9 @@
                             <div class="social_icon text-right">
                                 <ul>
                                     <li><a href="#"> <i class="bi bi-facebook"></i> </a></li>
-                                    <li><a href="#"> <i class="bi bi-whatsapp"></i> </a></li>
+                                    <li><a href="https://wa.me/525537178947"> <i class="bi bi-whatsapp"></i> </a></li>
                                     <li><a href="#"> <i class="bi bi-youtube"></i> </a></li>
+                                    <li><a href="#"> <img width="13px" src="./img/svg_icon/platzi.svg"> </a></li>
                                 </ul>
                             </div>
                         </div>

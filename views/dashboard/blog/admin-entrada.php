@@ -9,7 +9,7 @@
 
 <?php
 if(!isset($_SESSION['valid'])) {
-	header('Location: ../../../connection/config.php');
+	header('Location: ../../../views/sign-in.php');
 }
 ?>
 

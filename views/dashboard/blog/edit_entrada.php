@@ -98,7 +98,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog where id_entrada =".$_GET['i
                               <div class="card mb-4">
                                   <div class="card-body">
                                       <form action="../../../controllers/blog/update_entradaController.php" method="post" name="editar_entrada_form">
-                                      <input name="id_entrada" type="hidden" value="<?php echo $res['id_entrada'];?>">
+                                        <input name="id_entrada" type="hidden" value="<?php echo $res['id_entrada'];?>">
                                           <div class="mb-3">
                                               <label class="form-label" for="basic-default-fullname">Fecha entrada</label>
                                               <input name="input_fecha" type="datetime" class="form-control" id="basic-default-fullname" placeholder="Ej: 25 Sept 2022" value="<?php echo $res['fecha_entrada'];?>">

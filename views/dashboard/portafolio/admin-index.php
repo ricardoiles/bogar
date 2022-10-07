@@ -13,17 +13,6 @@ if(!isset($_SESSION['valid'])) {
 }
 ?>
 
-<?php
-//including the database connection file
-include_once("../../../connection/config.php");
-
-//fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORDER BY fecha_entrada desc");
-
-// query entradas eliminadas
-$delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 0 ORDER BY eliminacion_entrada desc");
-?>
-
 <?php 
   include('../../../components/head_dashboard.html');
 ?>
@@ -100,35 +89,37 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                               </h2>
                               <div
                                 id="linkredsocial"
-                                class="accordion-collapse collapse"
+                                class="accordion-collapse collapse show"
                                 aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample"
                                 >
                                 <div class="accordion-body">
-                                  <form class="row g-3">
-                                    <div class="col-md-6">
-                                      <label for="inputEmail4" class="form-label">Facebook</label>
-                                      <input type="email" class="form-control" id="inputEmail4">
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label for="inputPassword4" class="form-label">WhatsApp</label>
-                                      <input type="password" class="form-control" id="inputPassword4">
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label for="inputCity" class="form-label">Youtube</label>
-                                      <input type="text" class="form-control" id="inputCity">
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label for="inputCity" class="form-label">Instagram</label>
-                                      <input type="text" class="form-control" id="inputCity">
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label for="inputCity" class="form-label">TikTok</label>
-                                      <input type="text" class="form-control" id="inputCity">
-                                    </div>
+                                  <form action="../../../controllers/portafolio/update_linksController.php" method="post" name="editar_links_form" class="row g-3">
+                                    <?php
+                                      //consultar link por red
+                                      $links = mysqli_query($mysqli, "SELECT * FROM links_redes");
+                                      while($link = mysqli_fetch_array($links)) {	
+                                    ?>
+                                      <div class="col-md-6">
+                                        <label 
+                                          for="<?php echo $link['id_link'];?>" 
+                                          class="form-label">
+                                          <?php echo $link['nombre_link'];?>
+                                        </label>
+                                        <input 
+                                          name="<?php echo $link['nombre_link'];?>"
+                                          type="text" 
+                                          class="form-control" 
+                                          id="<?php echo $link['id_link'];?>" 
+                                          value="<?php echo $link['link'];?>"
+                                        />
+                                      </div>
+                                    <?php
+                                      }
+                                    ?>
                                     <div class="col-12">
                                       <div class="d-grid gap-2">
-                                      <input type="submit" class="btn btn-primary" value="Guardar"/>
+                                      <input type="submit" name="updatelinks" class="btn btn-primary" value="Guardar"/>
                                       </div>
                                     </div>
                                   </form>
@@ -205,81 +196,82 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                           </h6>
                         </p>
                         <!-- servicios accordion -->
-                          <div class="accordion mt-3" id="accordionExample">
-                            <div class="card accordion-item">
-                              <h2 class="accordion-header" id="headingTwo">
-                                <button
-                                type="button"
-                                class="accordion-button collapsed"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#servicios"
-                                aria-expanded="false"
-                                aria-controls="servicios"
-                                >
-                                <i class="bi bi-view-list"></i> &nbsp;
-                                Servicios
-                              </h2>
-                              <div
-                                id="servicios"
-                                class="accordion-collapse collapse show"
-                                aria-labelledby="headingTwo"
-                                data-bs-parent="#accordionExample"
-                                >
-                                <div class="accordion-body">
-                                  <!-- Social Accounts -->
-                                    <div class="d-flex mb-3">
-                                      <div class="flex-shrink-0">
-                                        <!-- dropdown edit -->
-                                        <div class="btn-group dropend">
-                                          <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                          </button>
-                                          <ul class="dropdown-menu" style="">
-                                            <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
-                                              <i class="bi bi-pencil text-primary"></i>
-                                              Editar
-                                            </a></li>
+                            <div class="accordion mt-3" id="accordionExample">
+                              <div class="card accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                  <button
+                                  type="button"
+                                  class="accordion-button collapsed"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#servicios"
+                                  aria-expanded="false"
+                                  aria-controls="servicios"
+                                  >
+                                  <i class="bi bi-view-list"></i> &nbsp;
+                                  Servicios
+                                </h2>
+                                <div
+                                  id="servicios"
+                                  class="accordion-collapse collapse"
+                                  aria-labelledby="headingTwo"
+                                  data-bs-parent="#accordionExample"
+                                  >
+                                  <div class="accordion-body">
+                                    <!-- Servicio -->
+                                      <div class="d-flex mb-3">
+                                        <div class="flex-shrink-0">
+                                          <!-- dropdown edit -->
+                                          <div class="btn-group dropend">
+                                            <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" style="">
+                                              <li><a class="dropdown-item" href="" 
+                                                    data-bs-toggle="modal" data-bs-target="#editarServicio">
+                                                <i class="bi bi-pencil text-primary"></i>
+                                                Editar
+                                              </a></li>
+                                              <li><a class="dropdown-item text-warning" href="javascript:void(0);">
+                                                <i class="bi bi-trash3 text-danger"></i>
+                                                Eliminar 
+                                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                              </a></li>
+                                            </ul>
                                             <?php 
-                                              // require('../../../components/modal_editarServicio.html');
-                                            ?> 
-                                            <li><a class="dropdown-item text-warning" href="javascript:void(0);">
-                                              <i class="bi bi-trash3 text-danger"></i>
-                                              Eliminar 
-                                              <i class="bi bi-exclamation-triangle-fill"></i>
-                                            </a></li>
-                                          </ul>
-                                        </div> &nbsp;
-                                        <!-- / dropdown edit -->
-                                      </div>
-                                      <div class="flex-grow-1 row">
-                                        <div class="col-9 col-sm-8 mb-sm-0 mb-2">
-                                          <h6 class="mb-0">Titulo servicio</h6>
-                                          <small class="text-muted">Servicio que ofrece Servicio que ofrece Servicio que ofrece Servicio que ofrece </small>
+                                                require('../../../components/modal_editarServicio.html');
+                                              ?> 
+                                          </div> &nbsp;
+                                          <!-- / dropdown edit -->
                                         </div>
-                                        <div class="col-3 col-sm-4 text-end">
-                                          <span class="badge rounded-pill bg-primary">Servicio</span>
+                                        <div class="flex-grow-1 row">
+                                          <div class="col-9 col-sm-8 mb-sm-0 mb-2">
+                                            <h6 class="mb-0">Titulo servicio</h6>
+                                            <small class="text-muted">Servicio que ofrece Servicio que ofrece Servicio que ofrece Servicio que ofrece </small>
+                                          </div>
+                                          <div class="col-3 col-sm-4 text-end">
+                                            <span class="badge rounded-pill bg-primary">Servicio</span>
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  <!-- /Social Accounts -->
-                                  <hr>
-                                  <div class="demo-inline-spacing text-end">
-                                  <a 
-                                    href="edit_entrada.php?id_entrada="
-                                    type="button" 
-                                    class="btn rounded-pill btn-outline-primary"
-                                    data-bs-toggle="modal" data-bs-target="#nuevaTrayectoria"
-                                    >
-                                    Añadir <span class=""><i class="bi bi-plus-lg"></i></span>
-                                  </a>
+                                    <!-- /Servicio -->
+                                    <hr>
+                                    <div class="demo-inline-spacing text-end">
+                                    <a 
+                                      href="edit_entrada.php?id_entrada="
+                                      type="button" 
+                                      class="btn rounded-pill btn-outline-primary"
+                                      data-bs-toggle="modal" data-bs-target="#nuevoServicio"
+                                      >
+                                      Añadir <span class=""><i class="bi bi-plus-lg"></i></span>
+                                    </a>
+                                  </div>
+                                  <?php 
+                                    require('../../../components/modal_nuevoServicio.html');
+                                  ?>  
                                 </div>
-                                <?php 
-                                  // require('../../../components/modal_nuevaTrayectoria.html');
-                                ?>  
                               </div>
                             </div>
                           </div>
-                        </div>
                         <!-- / servicios accordion  -->
                         <!-- clases accordion -->
                           <div class="accordion mt-3" id="accordionExample">
@@ -303,35 +295,57 @@ $delete_query = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada =
                                 data-bs-parent="#accordionExample"
                                 >
                                 <div class="accordion-body">
-                                  contenido
+                                  <!-- Clase -->
+                                    <div class="d-flex mb-3">
+                                      <div class="flex-shrink-0">
+                                        <!-- dropdown edit -->
+                                        <div class="btn-group dropend">
+                                          <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                          </button>
+                                          <ul class="dropdown-menu" style="">
+                                            <li><a class="dropdown-item" href="" 
+                                                  data-bs-toggle="modal" data-bs-target="#editarClase">
+                                              <i class="bi bi-pencil text-primary"></i>
+                                              Editar
+                                            </a></li>
+                                            <li><a class="dropdown-item text-warning" href="javascript:void(0);">
+                                              <i class="bi bi-trash3 text-danger"></i>
+                                              Eliminar 
+                                              <i class="bi bi-exclamation-triangle-fill"></i>
+                                            </a></li>
+                                          </ul>
+                                          <?php 
+                                              require('../../../components/modal_editarClase.html');
+                                            ?> 
+                                        </div> &nbsp;
+                                        <!-- / dropdown edit -->
+                                      </div>
+                                      <div class="flex-grow-1 row">
+                                        <div class="col-9 col-sm-8 mb-sm-0 mb-2">
+                                          <h6 class="mb-0">Titulo Clase</h6>
+                                          <small class="text-muted">Servicio que ofrece Servicio que ofrece Servicio que ofrece Servicio que ofrece </small>
+                                        </div>
+                                        <div class="col-3 col-sm-4 text-end">
+                                          <span class="badge rounded-pill bg-success">Clase</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <!-- /Clase -->
                                   <hr>
-                                  <span class="card-link">
-                                    <i class="bi bi-columns-gap"></i>
-                                    category
-                                  </span>
-                                  <span class="card-link">
-                                    <i class="bi bi-chat-square"></i>
-                                    Comentarios
-                                  </span>
                                   <div class="demo-inline-spacing text-end">
                                     <a 
                                       href="edit_entrada.php?id_entrada="
                                       type="button" 
-                                      class="btn rounded-pill btn-icon btn-outline-primary"
+                                      class="btn rounded-pill btn-outline-primary"
+                                      data-bs-toggle="modal" data-bs-target="#nuevaClase"
                                       >
-                                      <span class="tf-icons bx"><i class="bi bi-pencil"></i></span>
-                                    </a>
-                                    <a
-                                      href="../../../single-blog.php?id_blog=" target="_blank"
-                                      type="button" class="btn rounded-pill btn-icon btn-outline-secondary">
-                                      <span class="tf-icons bx "><i class="bi bi-eye"></i></span>
-                                    </a>
-                                    <a
-                                      href="../../../controllers/blog/delete_entradaController.php?id_entrada="
-                                      type="button" class="btn rounded-pill btn-icon btn-outline-danger">
-                                      <span class="tf-icons bx "><i class="bi bi-trash3"></i></span>
+                                      Añadir <span class=""><i class="bi bi-plus-lg"></i></span>
                                     </a>
                                   </div>
+                                  <?php 
+                                    require('../../../components/modal_nuevaClase.html');
+                                  ?>  
                                 </div>
                               </div>
                             </div>
