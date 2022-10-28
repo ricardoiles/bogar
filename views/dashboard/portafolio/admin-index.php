@@ -94,35 +94,39 @@ if(!isset($_SESSION['valid'])) {
                                 data-bs-parent="#accordionExample"
                                 >
                                 <div class="accordion-body">
-                                  <form action="../../../controllers/portafolio/update_linksController.php" method="post" name="editar_links_form" class="row g-3">
                                     <?php
                                       //consultar link por red
                                       $links = mysqli_query($mysqli, "SELECT * FROM links_redes");
                                       while($link = mysqli_fetch_array($links)) {	
                                     ?>
-                                      <div class="col-md-6">
+                                    <form action="../../../controllers/portafolio/update_linksController.php" method="post" name="editar_links_form" class="row g-3">
+                                      <div class="col-md-12">
                                         <label 
                                           for="<?php echo $link['id_link'];?>" 
                                           class="form-label">
                                           <?php echo $link['nombre_link'];?>
                                         </label>
-                                        <input 
-                                          name="<?php echo $link['nombre_link'];?>"
-                                          type="text" 
-                                          class="form-control" 
-                                          id="<?php echo $link['id_link'];?>" 
-                                          value="<?php echo $link['link'];?>"
-                                        />
+                                        <div class="input-group mb-3">
+                                          <input 
+                                            name="inputlink" 
+                                            type="text" class="form-control" 
+                                            placeholder="Recipient's username" 
+                                            value="<?php echo $link['link'];?>"
+                                            >
+                                            <input type="hidden" name="idlink" value="<?php echo $link['id_link'];?>">
+                                            <input type="hidden" name="namelink" value="<?php echo $link['nombre_link'];?>">
+                                          <button 
+                                            class="btn btn-primary" 
+                                            type="submit" 
+                                            name="updatelinks">
+                                            Guardar 
+                                          </button>
+                                        </div>
                                       </div>
+                                    </form>
                                     <?php
                                       }
                                     ?>
-                                    <div class="col-12">
-                                      <div class="d-grid gap-2">
-                                      <input type="submit" name="updatelinks" class="btn btn-primary" value="Guardar"/>
-                                      </div>
-                                    </div>
-                                  </form>
                                 </div>
                               </div>
                             </div>
