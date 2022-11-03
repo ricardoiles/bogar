@@ -89,7 +89,7 @@ if(!isset($_SESSION['valid'])) {
                               </h2>
                               <div
                                 id="linkredsocial"
-                                class="accordion-collapse collapse show"
+                                class="accordion-collapse collapse"
                                 aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample"
                                 >
@@ -149,42 +149,60 @@ if(!isset($_SESSION['valid'])) {
                               </h2>
                               <div
                                 id="previewinfo"
-                                class="accordion-collapse collapse"
+                                class="accordion-collapse collapse show"
                                 aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample"
                                 >
                                 <div class="accordion-body">
-                                  <form class="row g-3">
+                                <?php
+                                  //consultar link por red
+                                  $preview = mysqli_query($mysqli, "SELECT * FROM preview_info");
+                                  while($prev = mysqli_fetch_array($preview)) {	
+                                ?>
+                                  <form action="../../../controllers/portafolio/update_previewInfoController.php" 
+                                    class="row g-3" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="id_info" value="<?php echo $prev['id_info'];?>">
                                     <div class="col-md-12">
                                       <label for="inputEmail4" class="form-label">Descripción breve sobre mí</label>
-                                      <textarea type="text" class="form-control" id="inputEmail4" value=""  maxlength="500" placeholder="Máximo 500 caracteres"></textarea>
+                                      <textarea type="text" class="form-control" id="inputEmail4" name="descripcion"
+                                        maxlength="500" placeholder="Máximo 500 caracteres">
+                                        <?php echo $prev['descripcion'];?>
+                                      </textarea>
                                     </div>
                                     <div class="col-md-12">
                                       <label for="inputCity" class="form-label">Foto</label>
-                                      <input type="file" class="form-control" id="inputCity">
-                                      <div id="emailHelp" class="form-text">La foto cargada actualmente es: <a href="">Link de la foto</a></div>
+                                      <input type="file" class="form-control" id="inputCity" value="../../../img/upload_images/<?php echo $prev['imagen']; ?>"  name="imagen" accept="image/*" required>
+                                      <div id="emailHelp" class="form-text">La foto cargada actualmente es: 
+                                        <a href="../../../img/upload_images/<?php echo $prev['imagen']; ?>" target="_blank">
+                                        <?php echo $prev['imagen']; ?></a></div>
                                     </div>
                                     <div class="col-md-6">
                                       <label for="inputCity" class="form-label">Correo</label>
-                                      <input type="text" class="form-control" id="inputCity">
+                                      <input type="text" class="form-control" id="inputCity" placeholder="Escribe aqui tu correo"
+                                        name="correo" value="<?php echo $prev['correo'];?>">
                                       <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="col-md-6">
                                       <label for="inputCity" class="form-label">Teléfono</label>
-                                      <input type="text" class="form-control" id="inputCity" placeholder="Ej: +52 123231123">
+                                      <input type="text" class="form-control" id="inputCity" placeholder="Ej: +52 123231123"
+                                        name="telefono" value="<?php echo $prev['telefono'];?>">
                                       <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="col-md-6">
                                       <label for="inputCity" class="form-label">Ubicación</label>
-                                      <input type="text" class="form-control" id="inputCity" placeholder="Ej: Lomas de Tarango, México">
+                                      <input type="text" class="form-control" id="inputCity" placeholder="Ej: Lomas de Tarango, México"
+                                        name="ubicacion" value="<?php echo $prev['ubicacion'];?>">
                                       <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="col-12">
                                       <div class="d-grid gap-2">
-                                      <input type="submit" class="btn btn-primary" value="Guardar"/>
+                                      <input type="submit" class="btn btn-primary" name="updatepreviewinfo" value="Guardar"/>
                                       </div>
                                     </div>
                                   </form>
+                                  <?php
+                                      }
+                                    ?>
                                 </div>
                               </div>
                             </div>
