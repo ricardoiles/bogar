@@ -9,13 +9,16 @@
             <div class="row">
             <div class="col mb-3">
                 <label for="nameBackdrop" class="form-label">Descripción del servicio</label>
-                <textarea type="text" rows="3" maxlength="500" id="nameBackdrop" class="form-control" placeholder="Descripción del servicio"></textarea>
+                <textarea type="text" rows="3" maxlength="500" id="nameBackdrop" class="form-control" 
+                placeholder="Descripción del servicio"><?php echo $serv['descripcion'];?></textarea>
             </div>
             </div>
             <div class="row g-2">
             <div class="col mb-0">
                 <label for="emailBackdrop" class="form-label">Titulo Servicio</label>
-                <input type="text" id="emailBackdrop" class="form-control" placeholder="Máximo 100 caracteres" maxlength="100">
+                <input type="text" id="emailBackdrop" class="form-control" 
+                    placeholder="Máximo 100 caracteres" maxlength="100" 
+                    value="<?php echo $serv['titulo'];?>">
             </div>
             </div>
         </div>

@@ -38,7 +38,7 @@
                  $query = "UPDATE preview_info SET descripcion = '$descripcion', imagen = '$imagen', correo = '$correo', telefono = '$telefono', ubicacion = '$ubicacion' WHERE id_info = ".$id_info;
                  $resultado = mysqli_query($conn,$query);
                  if($resultado){
-                      move_uploaded_file($temp,'upload_images/'.$imagen);   
+                      move_uploaded_file($temp,'../../img/upload_images/'.$imagen);   
                      $_SESSION['message'] = 'se ha subido correctamente';
                      $_SESSION['message_type'] = 'success';
                      header('Location: ../../views/dashboard/portafolio/admin-index.php');

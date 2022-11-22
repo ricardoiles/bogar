@@ -149,7 +149,7 @@ if(!isset($_SESSION['valid'])) {
                               </h2>
                               <div
                                 id="previewinfo"
-                                class="accordion-collapse collapse show"
+                                class="accordion-collapse collapse"
                                 aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample"
                                 >
@@ -234,12 +234,17 @@ if(!isset($_SESSION['valid'])) {
                                 </h2>
                                 <div
                                   id="servicios"
-                                  class="accordion-collapse collapse"
+                                  class="accordion-collapse collapse show"
                                   aria-labelledby="headingTwo"
                                   data-bs-parent="#accordionExample"
                                   >
                                   <div class="accordion-body">
                                     <!-- Servicio -->
+                                    <?php
+                                      //consultar link por red
+                                      $servicio = mysqli_query($mysqli, "SELECT * FROM servicios WHERE tipo = 'servicio'");
+                                      while($serv = mysqli_fetch_array($servicio)) {	
+                                    ?>
                                       <div class="d-flex mb-3">
                                         <div class="flex-shrink-0">
                                           <!-- dropdown edit -->
@@ -260,21 +265,24 @@ if(!isset($_SESSION['valid'])) {
                                               </a></li>
                                             </ul>
                                             <?php 
-                                                require('../../../components/modal_editarServicio.html');
+                                                require('../../../components/modal_editarServicio.php');
                                               ?> 
                                           </div> &nbsp;
                                           <!-- / dropdown edit -->
                                         </div>
                                         <div class="flex-grow-1 row">
                                           <div class="col-9 col-sm-8 mb-sm-0 mb-2">
-                                            <h6 class="mb-0">Titulo servicio</h6>
-                                            <small class="text-muted">Servicio que ofrece Servicio que ofrece Servicio que ofrece Servicio que ofrece </small>
+                                            <h6 class="mb-0"><?php echo $serv['titulo'];?></h6>
+                                            <small class="text-muted"><?php echo $serv['descripcion'];?></small>
                                           </div>
                                           <div class="col-3 col-sm-4 text-end">
-                                            <span class="badge rounded-pill bg-primary">Servicio</span>
+                                            <span class="badge rounded-pill bg-primary"><?php echo $serv['tipo'];?></span>
                                           </div>
                                         </div>
                                       </div>
+                                    <?php
+                                      }
+                                    ?>
                                     <!-- /Servicio -->
                                     <hr>
                                     <div class="demo-inline-spacing text-end">
