@@ -234,7 +234,7 @@ if(!isset($_SESSION['valid'])) {
                                 </h2>
                                 <div
                                   id="servicios"
-                                  class="accordion-collapse collapse show"
+                                  class="accordion-collapse collapse"
                                   aria-labelledby="headingTwo"
                                   data-bs-parent="#accordionExample"
                                   >
@@ -254,15 +254,18 @@ if(!isset($_SESSION['valid'])) {
                                             </button>
                                             <ul class="dropdown-menu" style="">
                                               <li><a class="dropdown-item" href="" 
-                                                    data-bs-toggle="modal" data-bs-target="#editarServicio">
+                                                    data-bs-toggle="modal" data-bs-target="#editarServicio<?php echo $serv['id_servicio']?>">
                                                 <i class="bi bi-pencil text-primary"></i>
                                                 Editar
                                               </a></li>
-                                              <li><a class="dropdown-item text-warning" href="javascript:void(0);">
-                                                <i class="bi bi-trash3 text-danger"></i>
-                                                Eliminar 
-                                                <i class="bi bi-exclamation-triangle-fill"></i>
-                                              </a></li>
+                                              <li>
+                                                  <a class="dropdown-item text-warning" 
+                                                    href="../../../controllers/portafolio/nuevo_servicioController.php?id_servicio=<?php echo $serv['id_servicio']?>">
+                                                  <i class="bi bi-trash3 text-danger"></i>
+                                                  Eliminar 
+                                                  <i class="bi bi-exclamation-triangle-fill"></i>
+                                                </a>
+                                              </li>
                                             </ul>
                                             <?php 
                                                 require('../../../components/modal_editarServicio.php');
@@ -286,15 +289,15 @@ if(!isset($_SESSION['valid'])) {
                                     <!-- /Servicio -->
                                     <hr>
                                     <div class="demo-inline-spacing text-end">
-                                    <a 
-                                      href="edit_entrada.php?id_entrada="
-                                      type="button" 
-                                      class="btn rounded-pill btn-outline-primary"
-                                      data-bs-toggle="modal" data-bs-target="#nuevoServicio"
-                                      >
-                                      Añadir <span class=""><i class="bi bi-plus-lg"></i></span>
-                                    </a>
-                                  </div>
+                                      <a 
+                                        href="edit_entrada.php?id_entrada="
+                                        type="button" 
+                                        class="btn rounded-pill btn-outline-primary"
+                                        data-bs-toggle="modal" data-bs-target="#nuevoServicio"
+                                        >
+                                        Añadir <span class=""><i class="bi bi-plus-lg"></i></span>
+                                      </a>
+                                    </div>
                                   <?php 
                                     require('../../../components/modal_nuevoServicio.html');
                                   ?>  
@@ -309,7 +312,7 @@ if(!isset($_SESSION['valid'])) {
                               <h2 class="accordion-header" id="headingTwo">
                                 <button
                                 type="button"
-                                class="accordion-button collapsed"
+                                class="accordion-button collapsed "
                                 data-bs-toggle="collapse"
                                 data-bs-target="#clases"
                                 aria-expanded="false"
@@ -320,12 +323,17 @@ if(!isset($_SESSION['valid'])) {
                               </h2>
                               <div
                                 id="clases"
-                                class="accordion-collapse collapse"
+                                class="accordion-collapse collapse show"
                                 aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample"
                                 >
                                 <div class="accordion-body">
-                                  <!-- Clase -->
+                                  <!-- Servicio -->
+                                  <?php
+                                    //consultar link por red
+                                    $servicio = mysqli_query($mysqli, "SELECT * FROM servicios WHERE tipo = 'clase'");
+                                    while($serv = mysqli_fetch_array($servicio)) {	
+                                  ?>
                                     <div class="d-flex mb-3">
                                       <div class="flex-shrink-0">
                                         <!-- dropdown edit -->
@@ -335,33 +343,39 @@ if(!isset($_SESSION['valid'])) {
                                           </button>
                                           <ul class="dropdown-menu" style="">
                                             <li><a class="dropdown-item" href="" 
-                                                  data-bs-toggle="modal" data-bs-target="#editarClase">
+                                                  data-bs-toggle="modal" data-bs-target="#editarClase<?php echo $serv['id_servicio']?>">
                                               <i class="bi bi-pencil text-primary"></i>
                                               Editar
                                             </a></li>
-                                            <li><a class="dropdown-item text-warning" href="javascript:void(0);">
-                                              <i class="bi bi-trash3 text-danger"></i>
-                                              Eliminar 
-                                              <i class="bi bi-exclamation-triangle-fill"></i>
-                                            </a></li>
+                                            <li>
+                                                <a class="dropdown-item text-warning" 
+                                                  href="../../../controllers/portafolio/nuevo_servicioController.php?id_clase=<?php echo $serv['id_servicio']?>">
+                                                <i class="bi bi-trash3 text-danger"></i>
+                                                Eliminar 
+                                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                              </a>
+                                            </li>
                                           </ul>
                                           <?php 
-                                              require('../../../components/modal_editarClase.html');
+                                              require('../../../components/modal_editarClase.php');
                                             ?> 
                                         </div> &nbsp;
                                         <!-- / dropdown edit -->
                                       </div>
                                       <div class="flex-grow-1 row">
                                         <div class="col-9 col-sm-8 mb-sm-0 mb-2">
-                                          <h6 class="mb-0">Titulo Clase</h6>
-                                          <small class="text-muted">Servicio que ofrece Servicio que ofrece Servicio que ofrece Servicio que ofrece </small>
+                                          <h6 class="mb-0"><?php echo $serv['titulo'];?></h6>
+                                          <small class="text-muted"><?php echo $serv['descripcion'];?></small>
                                         </div>
                                         <div class="col-3 col-sm-4 text-end">
-                                          <span class="badge rounded-pill bg-success">Clase</span>
+                                          <span class="badge rounded-pill bg-success"><?php echo $serv['tipo'];?></span>
                                         </div>
                                       </div>
                                     </div>
-                                  <!-- /Clase -->
+                                  <?php
+                                    }
+                                  ?>
+                                  <!-- /Servicio -->
                                   <hr>
                                   <div class="demo-inline-spacing text-end">
                                     <a 
@@ -373,13 +387,13 @@ if(!isset($_SESSION['valid'])) {
                                       Añadir <span class=""><i class="bi bi-plus-lg"></i></span>
                                     </a>
                                   </div>
-                                  <?php 
-                                    require('../../../components/modal_nuevaClase.html');
-                                  ?>  
-                                </div>
+                                <?php 
+                                  require('../../../components/modal_nuevaClase.html');
+                                ?>  
                               </div>
                             </div>
                           </div>
+                        </div>
                         <!-- / clases accordion  -->
                       <!-- / Mis servicios -->
                     </div>
