@@ -306,6 +306,7 @@ if(!isset($_SESSION['valid'])) {
                             </div>
                           </div>
                         <!-- / servicios accordion  -->
+
                         <!-- clases accordion -->
                           <div class="accordion mt-3" id="accordionExample">
                             <div class="card accordion-item">
@@ -323,7 +324,7 @@ if(!isset($_SESSION['valid'])) {
                               </h2>
                               <div
                                 id="clases"
-                                class="accordion-collapse collapse show"
+                                class="accordion-collapse collapse"
                                 aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample"
                                 >
@@ -427,27 +428,44 @@ if(!isset($_SESSION['valid'])) {
                               data-bs-parent="#accordionExample"
                               >
                               <div class="accordion-body">
-                                <form class="row g-3">
+                                <?php
+                                  $sobremi = mysqli_query($mysqli, "SELECT * FROM sobre_mi where seccion = 'cesar'");
+                                  while($abo = mysqli_fetch_array($sobremi)) {	
+                                ?>
+                                <form action="../../../controllers/portafolio/update_previewInfoController.php" method="post"
+                                  enctype="multipart/form-data">
+                                  <input type="hidden" name="id_mi" value="<?php echo $abo['id_mi'];?>">
                                   <div class="col-md-12">
-                                    <label for="inputEmail4" class="form-label">Descripción sobre mí</label>
-                                    <textarea type="text" class="form-control" id="inputEmail4" value="" rows="4"  maxlength="2000"></textarea>
+                                    <label for="description" class="form-label">Descripción sobre mí</label>
+                                    <textarea type="text" name="descripcion" class="form-control" id="description" 
+                                      value="" rows="6"  maxlength="2000" required>
+                                      <?php echo $abo['descripcion'];?>
+                                    </textarea>
                                   </div>
                                   <div class="col-md-12">
-                                    <label for="inputCity" class="form-label">Foto</label>
-                                    <input type="file" class="form-control" id="inputCity">
-                                    <div id="emailHelp" class="form-text">La foto cargada actualmente es: <a href="">Link de la foto</a></div>
+                                    <label for="foto" class="form-label">Foto</label>
+                                    <input type="file" class="form-control" id="inputCity" value="../../../img/upload_images/<?php echo $abo['foto']; ?>"  name="foto" accept="image/*" required>
+                                    <div id="emailHelp" class="form-text">La foto cargada actualmente es: 
+                                      <a href="../../../img/upload_images/<?php echo $abo['foto']; ?>" target="_blank">
+                                      <?php echo $abo['foto']; ?></a>
+                                    </div>
                                   </div>
+                                  <br>
                                   <div class="col-12">
                                     <div class="d-grid gap-2">
-                                    <input type="submit" class="btn btn-primary" value="Guardar"/>
+                                    <input type="submit" class="btn btn-primary" value="Guardar" name="updatecesar"/>
                                     </div>
                                   </div>
                                 </form>
+                                <?php
+                                  }
+                                ?>
                               </div>
                             </div>
                           </div>
                         </div>
                       <!-- / Quien es cesar -->
+
                       <!-- Conoce mi historia -->
                         <div class="accordion mt-3" id="accordionExample">
                           <div class="card accordion-item">
@@ -470,27 +488,45 @@ if(!isset($_SESSION['valid'])) {
                               data-bs-parent="#accordionExample"
                               >
                               <div class="accordion-body">
-                                <form class="row g-3">
+                              <?php
+                                $historia = mysqli_query($mysqli, "SELECT * FROM sobre_mi where seccion = 'historia'");
+                                while($his = mysqli_fetch_array($historia)) {	
+                              ?>
+                              <form action="../../../controllers/portafolio/update_previewInfoController.php" method="post"
+                                  enctype="multipart/form-data">
                                   <div class="col-md-12">
+                                    <input type="hidden" name="id_mi" value="<?php echo $his['id_mi']; ?>">
                                     <label for="inputEmail4" class="form-label">Storytelling (<i>Cuenta tu historia</i>)</label>
-                                    <textarea type="text" class="form-control" id="inputEmail4" value="" rows="4"  maxlength="2000" placeholder="Cuenta tu historia"></textarea>
+                                    <textarea type="text" class="form-control" id="inputEmail4" value="" rows="6"  
+                                      maxlength="2000" placeholder="Cuenta tu historia" name="descripcion" required>
+                                      <?php echo $his['descripcion']; ?>
+                                    </textarea>
                                   </div>
                                   <div class="col-md-12">
                                     <label for="inputCity" class="form-label">Foto</label>
-                                    <input type="file" class="form-control" id="inputCity">
-                                    <div id="emailHelp" class="form-text">La foto cargada actualmente es: <a href="">Link de la foto</a></div>
+                                    <input type="file" class="form-control" id="inputCity" value="../../../img/upload_images/<?php echo $abo['foto']; ?>"  
+                                      name="foto" accept="image/*" required>
+                                    <div id="emailHelp" class="form-text">La foto cargada actualmente es: 
+                                      <a href="../../../img/upload_images/<?php echo $his['foto']; ?>" target="_blank">
+                                      <?php echo $his['foto']; ?></a>
+                                    </div>
                                   </div>
+                                  <br>
                                   <div class="col-12">
                                     <div class="d-grid gap-2">
-                                    <input type="submit" class="btn btn-primary" value="Guardar"/>
+                                    <input type="submit" class="btn btn-primary" value="Guardar" name="updatehistoria"/>
                                     </div>
                                   </div>
                                 </form>
+                                <?php
+                                  }
+                                ?>
                               </div>
                             </div>
                           </div>
                         </div>
                       <!-- / Conoce mi historia -->
+
                       <!-- Experiencia -->
                         <div class="accordion mt-3" id="accordionExample">
                           <div class="card accordion-item">
@@ -508,43 +544,56 @@ if(!isset($_SESSION['valid'])) {
                             </h2>
                             <div
                               id="experiencia"
-                              class="accordion-collapse collapse"
+                              class="accordion-collapse collapse show"
                               aria-labelledby="headingTwo"
                               data-bs-parent="#accordionExample"
                               >
                               <div class="accordion-body">
+                                <?php
+                                  //consultar link por red
+                                  $experiencia = mysqli_query($mysqli, "SELECT * FROM expe_traye WHERE tipo = 'experiencia'");
+                                  while($expe = mysqli_fetch_array($experiencia)) {	
+                                ?>
                                 <ul class="p-0 m-0">
                                   <li class="d-flex mb-4 pb-1">
                                     <div class="dropdown">
-                                      <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" 
+                                        aria-haspopup="true" aria-expanded="false">
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                       </button>
                                       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalEditar">
+                                        <a class="dropdown-item" href="" data-bs-toggle="modal" 
+                                          data-bs-target="#modalEditar<?php echo $expe['id_et']?>">
                                           <i class="bi bi-pencil text-primary"></i>
                                           Editar
                                         </a>
-                                        <a class="dropdown-item text-warning" href="javascript:void(0);">
+                                        <a class="dropdown-item text-warning" 
+                                          href="../../../controllers/portafolio/expe_trayeController.php?id_experiencia=<?php echo $expe['id_et']?>">
                                           <i class="bi bi-trash3 text-danger"></i>
                                           Eliminar 
                                           <i class="bi bi-exclamation-triangle-fill"></i>
                                         </a>
                                       </div>
                                       <?php 
-                                        require('../../../components/modal_editarExperiencia.html');
+                                        require('../../../components/modal_editarExperiencia.php');
                                       ?> 
                                     </div> &nbsp;
                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                       <div class="me-2 w-75">
-                                        <h6 class="d-block mb-1">Nombre experiencia</h6>
-                                        <span class="text-muted mb-0">Descripción de la experiencia máximo 200 o mas para probar caracteres</span>
+                                        <h6 class="d-block mb-1"><?php echo $expe['titulo'];?></h6>
+                                        <span class="text-muted mb-0"><?php echo $expe['descripcion'];?></span>
                                       </div>
                                       <div class="user-progress d-flex align-items-center gap-1">
-                                        <h6 class="mb-0"><i class="bi bi-calendar-event"></i> 2 Oct</h6>
+                                        <h6 class="mb-0"><i class="bi bi-calendar-event"></i> 
+                                          <?php echo $expe['fecha_lugar'];?>
+                                        </h6>
                                       </div>
                                     </div>
                                   </li>
                                 </ul>
+                                <?php
+                                    }
+                                  ?>
                                 <hr>
                                 <div class="demo-inline-spacing text-end">
                                   <a 

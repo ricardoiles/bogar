@@ -30,7 +30,7 @@
                 $tipo = $_FILES['imagen']['type'];
                 $temp  = $_FILES['imagen']['tmp_name'];
         
-               if( !((strpos($tipo,'jpg') || strpos($tipo,'jpg') || strpos($tipo,'jpeg') || strpos($tipo,'webp')))){
+               if( !((strpos($tipo,'jpg') || strpos($tipo,'png') || strpos($tipo,'jpeg') || strpos($tipo,'webp')))){
                   $_SESSION['message'] = 'solo se permite archivos jpeg, jpg, png, webp';
                   $_SESSION['message_type'] = 'danger';
                   header('Location: ../../views/dashboard/portafolio/admin-index.php');
@@ -39,6 +39,68 @@
                  $resultado = mysqli_query($conn,$query);
                  if($resultado){
                       move_uploaded_file($temp,'../../img/upload_images/'.$imagen);   
+                     $_SESSION['message'] = 'se ha subido correctamente';
+                     $_SESSION['message_type'] = 'success';
+                     header('Location: ../../views/dashboard/portafolio/admin-index.php');
+                 }else{
+                     $_SESSION['message'] = 'ocurrio un error en el servidor';
+                     $_SESSION['message_type'] = 'danger';
+                 }
+               }
+            }
+        }
+
+        // quien es cesar - información sobre mi
+        if(isset($_POST['updatecesar'])){
+            $id_mi = $_POST['id_mi'];
+            $seccion = "cesar";
+            $descripcion = $_POST['descripcion'];
+            $foto = $_FILES['foto']['name'];
+        
+            if(isset($foto) && $foto != ""){
+                $tipo = $_FILES['foto']['type'];
+                $temp  = $_FILES['foto']['tmp_name'];
+        
+               if( !((strpos($tipo,'jpg') || strpos($tipo,'png') || strpos($tipo,'jpeg') || strpos($tipo,'webp')))){
+                  $_SESSION['message'] = 'solo se permite archivos jpeg, jpg, png, webp';
+                  $_SESSION['message_type'] = 'danger';
+                  header('Location: ../../views/dashboard/portafolio/admin-index.php');
+               }else{
+                 $query = "UPDATE sobre_mi SET seccion = '$seccion', descripcion = '$descripcion', foto = '$foto' WHERE id_mi = ".$id_mi;
+                 $resultado = mysqli_query($conn,$query);
+                 if($resultado){
+                      move_uploaded_file($temp,'../../img/upload_images/'.$foto);   
+                     $_SESSION['message'] = 'se ha subido correctamente';
+                     $_SESSION['message_type'] = 'success';
+                     header('Location: ../../views/dashboard/portafolio/admin-index.php');
+                 }else{
+                     $_SESSION['message'] = 'ocurrio un error en el servidor';
+                     $_SESSION['message_type'] = 'danger';
+                 }
+               }
+            }
+        }
+
+        // conoce mi historia - información sobre mi
+        if(isset($_POST['updatehistoria'])){
+            $id_mi = $_POST['id_mi'];
+            $seccion = "historia";
+            $descripcion = $_POST['descripcion'];
+            $foto = $_FILES['foto']['name'];
+        
+            if(isset($foto) && $foto != ""){
+                $tipo = $_FILES['foto']['type'];
+                $temp  = $_FILES['foto']['tmp_name'];
+        
+               if( !((strpos($tipo,'jpg') || strpos($tipo,'png') || strpos($tipo,'jpeg') || strpos($tipo,'webp')))){
+                  $_SESSION['message'] = 'solo se permite archivos jpeg, jpg, png, webp';
+                  $_SESSION['message_type'] = 'danger';
+                  header('Location: ../../views/dashboard/portafolio/admin-index.php');
+               }else{
+                 $query = "UPDATE sobre_mi SET seccion = '$seccion', descripcion = '$descripcion', foto = '$foto' WHERE id_mi = ".$id_mi;
+                 $resultado = mysqli_query($conn,$query);
+                 if($resultado){
+                      move_uploaded_file($temp,'../../img/upload_images/'.$foto);   
                      $_SESSION['message'] = 'se ha subido correctamente';
                      $_SESSION['message_type'] = 'success';
                      header('Location: ../../views/dashboard/portafolio/admin-index.php');
