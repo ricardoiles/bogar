@@ -14,7 +14,7 @@
     <title>César Nuñez | Admin</title>
     <meta name="description" content="" />
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="http://localhost/bogar/img/logo2_bogar.png" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,7 +46,7 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-        <?php include("../../components/sidenav_dashboard.html")?>
+        <?php include("../../components/sidenav_dashboard.html")?>        
         <!-- / Menu -->
 
         <!-- Layout container -->
@@ -115,8 +115,30 @@
               </div>
               <div class="row">
                 <!-- Order Statistics -->
-                <div class="col-md-12 col-lg-4 col-xl-4 order-0 mb-4">
-                  Ultimas acciones
+                <div class="col-md-12 col-lg-12 col-xl-12 order-0 mb-12">
+                  Accedes a las herramientas de administración.
+                  <div class="demo-inline-spacing">
+                    <a href="http://localhost/bogar/views/dashboard/blog/admin-entrada.php" class="btn rounded-pill btn-outline-primary">
+                      <i class="bi bi-journal-text menu-icon tf-icons bx bx-layout"></i>&nbsp;
+                      Administrar Blog
+                    </a>
+                    <a href="http://localhost/bogar/blog.php" class="btn rounded-pill btn-outline-primary" target="_blank">
+                      <i class="bi bi-box-arrow-up-right"></i>&nbsp; 
+                      Ver blog
+                    </a>
+                    <a href="http://localhost/bogar/views/dashboard/portafolio/admin-index.php" class="btn rounded-pill btn-outline-primary">
+                      <i class="bi bi-layout-sidebar menu-icon tf-icons bx bx-dock-top"></i>&nbsp;
+                      Administrar portafolio
+                    </a>
+                    <a href="http://localhost/bogar/index.php" class="btn rounded-pill btn-outline-primary" target="_blank">
+                      <i class="bi bi-box-arrow-up-right"></i>&nbsp; 
+                      Ver portafolio
+                    </a>
+                    <a href="http://localhost/bogar/views/dashboard/portafolio/admin-index.php" class="btn rounded-pill btn-outline-primary">
+                      <i class="bi bi-person-lines-fill menu-icon tf-icons bx bx-cube-alt"></i>&nbsp;
+                      lista de contactos
+                    </a>
+                  </div>
                 </div>
                 <!--/ Order Statistics -->
               </div>
@@ -127,11 +149,7 @@
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , Hecho con ❤️ by
+                  © 2022, Hecho con ❤️ by
                   <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
                 <div>

@@ -69,7 +69,7 @@
         // crear clase
         if(isset($_POST['nueva_clase'])) {	
             $titulo = $_POST['titulo'];
-            echo "".$descripcion = $_POST['description'];
+            $descripcion = $_POST['description'];
             $tipo = "clase";
             
             //insert data to database	

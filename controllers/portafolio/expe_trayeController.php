@@ -70,52 +70,57 @@
             header('Location: ../../views/dashboard/portafolio/admin-index.php');
         }
 
-        // ---------------------------------- clase ------------------------------
-        // crear clase
-        if(isset($_POST['nueva_clase'])) {	
+        // ---------------------------------- trayectoria ------------------------------
+        // crear trayectoria
+        if(isset($_POST['nueva_trayectoria'])) {	
             $titulo = $_POST['titulo'];
-            echo "".$descripcion = $_POST['description'];
-            $tipo = "clase";
+            $descripcion = $_POST['descripcion'];
+            $tipo = "trayectoria";
+            $lugar = $_POST['lugar'];
             
             //insert data to database	
-            $result = mysqli_query($mysqli, "INSERT INTO servicios(tipo, titulo, descripcion) 
-            values ('$tipo', '$titulo', '$descripcion') ");
+            $result = mysqli_query($mysqli, "INSERT INTO expe_traye(tipo, titulo, descripcion, fecha_lugar) 
+            values ('$tipo', '$titulo', '$descripcion', '$lugar') ");
 
             //display success message
-            $_SESSION['message'] = 'Clase '.$titulo.' creada';
+            $_SESSION['message'] = 'Trayectoria '.$titulo.' creada';
             $_SESSION['message_type'] = 'success';
 
             header('Location: ../../views/dashboard/portafolio/admin-index.php');
         }
-        // editar servicio
-        if(isset($_POST['editar_clase'])) {	
-            $idclase = $_POST['id_clase'];
-            $titulo = $_POST['title'];
-            $descripcion = $_POST['description'];
+        
+        // editar trayectoria
+        // editar experiencia
+        if(isset($_POST['editar_trayectoria'])) {
+            $id_et = $_POST['id_et'];
+            $titulo = $_POST['titulo'];
+            $descripcion = $_POST['descripcion'];
+            $fecha = $_POST['lugar'];
             
             //insert data to database	
-            $result = mysqli_query($mysqli, "UPDATE servicios 
-                                            set tipo = 'clase',
-                                            titulo = '$titulo',
-                                            descripcion = '$descripcion'
-                                            WHERE id_servicio = ".$idclase);
+            $result = mysqli_query($mysqli, "UPDATE expe_traye 
+                                            set titulo = '$titulo',
+                                            descripcion = '$descripcion',
+                                            fecha_lugar = '$fecha'
+                                            WHERE id_et = ".$id_et);
             
            //display success message
-           $_SESSION['message'] = 'Clase editada';
+           $_SESSION['message'] = 'Trayectoria '.$titulo.' editada';
            $_SESSION['message_type'] = 'success';
            
 
            header('Location: ../../views/dashboard/portafolio/admin-index.php');
         }
-        // eliminar servicio
-        if(isset($_GET['id_clase'])) {	
-            $clase = $_GET['id_clase'];
+
+        // eliminar trayectoria
+        if(isset($_GET['id_trayectoria'])) {	
+            $trayectoria = $_GET['id_trayectoria'];
             
             // delete data to database	
-            $result = mysqli_query($mysqli, "DELETE FROM servicios Where id_servicio = ".$clase);
+            $result = mysqli_query($mysqli, "DELETE FROM expe_traye where id_et = ".$trayectoria);
 
             //display success message
-            $_SESSION['message'] = 'Servicio eliminado';
+            $_SESSION['message'] = 'Trayectoria eliminada con éxito';
             $_SESSION['message_type'] = 'info';
             
 

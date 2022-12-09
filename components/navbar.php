@@ -20,7 +20,7 @@
                                         <li><a href="about.php">Sobre mí</a></li>
                                         <li><a href="services.php">Servicios</a></li>
                                         <li><a href="blog.php">Blog</a></li>
-                                        <li><a href="contact.html">Contactame</a></li>
+                                        <li><a href="contact.php">Contactame</a></li>
                                     </ul>
                                 </nav>
                             </div>

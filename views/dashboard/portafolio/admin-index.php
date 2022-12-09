@@ -190,8 +190,15 @@ if(!isset($_SESSION['valid'])) {
                                     </div>
                                     <div class="col-md-6">
                                       <label for="inputCity" class="form-label">Ubicación</label>
-                                      <input type="text" class="form-control" id="inputCity" placeholder="Ej: Lomas de Tarango, México"
+                                      <input type="text" class="form-control" id="inputCity" placeholder="Ej: México, CDMX"
                                         name="ubicacion" value="<?php echo $prev['ubicacion'];?>">
+                                      <div id="emailHelp" class="form-text"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inputCity" class="form-label">Dirección</label>
+                                      <input type="text" class="form-control" id="inputCity" 
+                                      placeholder="Ej: Lomas de Tarango"
+                                        name="direccion" value="<?php echo $prev['direccion'];?>">
                                       <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="col-12">
@@ -544,7 +551,7 @@ if(!isset($_SESSION['valid'])) {
                             </h2>
                             <div
                               id="experiencia"
-                              class="accordion-collapse collapse show"
+                              class="accordion-collapse collapse"
                               aria-labelledby="headingTwo"
                               data-bs-parent="#accordionExample"
                               >
@@ -635,41 +642,52 @@ if(!isset($_SESSION['valid'])) {
                               data-bs-parent="#accordionExample"
                               >
                               <div class="accordion-body">
+                                <?php
+                                  //consultar link por red
+                                  $trayectoria = mysqli_query($mysqli, "SELECT * FROM expe_traye WHERE tipo = 'trayectoria'");
+                                  while($traye = mysqli_fetch_array($trayectoria)) {	
+                                ?>
                                 <ul class="p-0 m-0">
                                   <li class="d-flex mb-4 pb-1">
                                     <div class="dropdown">
-                                      <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown" 
+                                        aria-haspopup="true" aria-expanded="false">
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                       </button>
                                       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalEditarTrayectoria">
+                                        <a class="dropdown-item" href="" data-bs-toggle="modal" 
+                                          data-bs-target="#editrayer<?php echo $traye['id_et']?>">
                                           <i class="bi bi-pencil text-primary"></i>
                                           Editar
                                         </a>
-                                        <a class="dropdown-item text-warning" href="javascript:void(0);">
+                                        <a class="dropdown-item text-warning" 
+                                          href="../../../controllers/portafolio/expe_trayeController.php?id_trayectoria=<?php echo $traye['id_et']?>">
                                           <i class="bi bi-trash3 text-danger"></i>
                                           Eliminar 
                                           <i class="bi bi-exclamation-triangle-fill"></i>
                                         </a>
                                       </div>
                                       <?php 
-                                        require('../../../components/modal_editarTrayectoria.html');
+                                        require('../../../components/modal_editarTrayectoria.php');
                                       ?> 
                                     </div> &nbsp;
                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                       <div class="me-2 w-50">
-                                        <h6 class="d-block mb-1">Tipo Trayectoria</h6>
-                                        <span class="text-muted mb-0">Descripción de la experiencia máximo 200 o mas caracteres</span>
+                                        <h6 class="d-block mb-1"><?php echo $traye['titulo']?></h6>
+                                        <span class="text-muted mb-0"><?php echo $traye['descripcion']?></span>
                                       </div>
                                       <div class="user-progress d-flex align-items-center gap-1">
                                         <h6 class="mb-0">
                                           <i class="bi bi-geo-alt"></i>
-                                          Ciudad de México
+                                          <?php echo $traye['fecha_lugar']?>
                                         </h6>
                                       </div>
                                     </div>
                                   </li>
                                 </ul>
+                                <?php
+                                    }
+                                  ?>
                                 <hr>
                                 <div class="demo-inline-spacing text-end">
                                   <a 
@@ -704,9 +722,7 @@ if(!isset($_SESSION['valid'])) {
             <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
               <div class="mb-2 mb-md-0">
                 ©
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
+                2022
                 , Hecho con ❤️ by
                 <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
               </div>
