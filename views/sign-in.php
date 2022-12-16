@@ -29,6 +29,47 @@
       body {
         font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
       }
+        
+      .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      }
+
+      .dropdown {
+      position: relative;
+      display: inline-block;
+      }
+
+      .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      }
+
+      .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      }
+
+      .dropdown-content a:hover {background-color: #f1f1f1;}
+
+      .dropdown:hover .dropdown-content {
+      display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+      }
     </style>
 </head>
 
@@ -54,7 +95,9 @@
                   $pass = mysqli_real_escape_string($mysqli, $_POST['password']);
 
                   $result = mysqli_query($mysqli, "SELECT * FROM user WHERE username='$user' AND password='$pass'")
-                        or die("Could not execute the select query.");
+                        or die("No se pudo ejecutar la consulta. <br> <a href='sign-in.php' class='text-danger'>Reintentar</a>");
+
+                        //   header("Refresh:0");		
                   
                   $row = mysqli_fetch_assoc($result);
                   
@@ -64,7 +107,7 @@
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['id'] = $row['id'];
                   } else {
-                    echo "Usario o contraseñas incorrectos";
+                    echo "Usuario o contraseñas incorrectos";
                     echo "<br/>";
                     echo "<a href='sign-in.php' class='text-danger'>Reintentar</a>";
                   }
@@ -93,10 +136,32 @@
                            placeholder="Contraseña"/> <br>
 
                     <input type="submit" name='login' class="btn btn-danger btn-lg btn-block" value="Ingresar"/> 
-                    <hr>
-
-                    <a class="small text-muted" href="#">Olvide mi contraseña</a>
-                    <a class="small text-muted" href="../">| Ver tu portafolio</a>
+                    <hr>                  
+                    <div class="dropdown" style="float:left;">
+                      <a class="small text-muted" href="#">Olvide mi contraseña </a>
+                      <div class="dropdown-content" style="left:0;">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col">
+                              <form name="form-forgot" method="post">
+                              <div class="mb-3">
+                                <br>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Pin de recuperación">
+                              </div>
+                              <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Nueva contraseña">
+                              </div> 
+                              <div class="mb-3">
+                                <input type="submit" name="forgotpass" class="btn btn-primary" value="Recuperar">
+                              </div> 
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <a class="small text-muted" href="../">&nbsp; | Ver tu portafolio</a>
                   </div>
                 </form>
               <?php
@@ -110,5 +175,8 @@
     </div>
   </div>
 </section>
+<script>
+
+</script>
 </body>
 </html>
