@@ -1,4 +1,3 @@
-<!-- header-start -->
 <header>
     <div class="header-area ">
         <div id="sticky-header" class="main-header-area">
@@ -45,4 +44,3 @@
         </div>
     </div>
 </header>
-<!-- header-end -->

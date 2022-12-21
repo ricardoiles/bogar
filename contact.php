@@ -39,6 +39,18 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORD
         <div class="col-12">
           <h2 class="contact-title">Ponte en contacto conmigo</h2>
         </div>
+        <?php
+          if(isset($_GET['danger'])){
+          echo "<div class='bg-danger text-white alert'>
+                  <strong>Oopps! </strong>".$_GET['danger']."
+                </div>";
+          }
+          if(isset($_GET['success'])){
+            echo "<div class='bg-success text-white alert'>
+                    <strong>Genial! </strong>".$_GET['success']."
+                  </div>";
+            }
+        ?>
         <div class="col-lg-8">
           <form class="form-contact contact_form" action="controllers/nuevo_contactoCOntroller.php" method="post" id="contactForm">
             <div class="row">

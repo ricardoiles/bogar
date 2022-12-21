@@ -19,7 +19,8 @@
             $result = mysqli_query($mysqli, "INSERT INTO contacto(nombres, email, whatsapp, titulo, mensaje) 
             values ('$nombres', '$email', '$whatsapp', '$titulo', '$mensaje') ");
 
-            header('Location: ../contact.php');
+            $success = urlencode("Recibí tu mensaje, Te contactaré pronto");
+            header("Location: ../contact.php?success=".$success);
         }
 
     ?>
