@@ -32,7 +32,17 @@
             <div class="row align-items-center">
                 <div class="col-xl-5 col-md-6">
                     <div class="about_thumb">
-                        <img class="img-fluid" src="img/about/bogar_about.jpg" alt="">
+                    <?php
+                        // informacion previa
+                        // include('./connection/config.php');
+                        $about = mysqli_query($mysqli, "SELECT * FROM sobre_mi WHERE seccion = 'cesar'");
+                        while($ab = mysqli_fetch_array($about)) {	
+                    ?>
+                        <img class="img-fluid" src="http://localhost/bogar_admin/img/upload_images/<?php echo $ab['foto']; ?>" 
+                            alt="<?php echo $ab['foto']; ?>">
+                    <?php
+                        }
+                    ?>
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-6">
@@ -42,14 +52,17 @@
                             <h5>Músico/baterista interprete con más de 15 años de experiencia.</h5>
                         </h3>
                         <p>
-                            Soy docente cuento con más de 7 años de experiencia en escuelas como ICM, Reaktor, Bogar Online (Proyecto propio). Me fascina el reto de transmitir a través del instrumento los sentimientos que el compositor quiera expresar en su obra. <br>
-                            La música me ha devuelto la salud, la coordinación y la felicidad, también me ha acompañado y retado día a día  a desarrollar esa constancia y disciplina para poder ser mejor en la vida. <br>
-                            Me fascina el reto de transmitir a través del instrumento los sentimientos que el compositor quiera expresar en su obra. Proporcionó un servicio profesional y de calidad aplicando mis conocimientos y experiencia; cumpliendo con ética, responsabilidad, compromiso y esfuerzo a la realización de las metas y objetivos que se requieran en cada proyecto. <br>
-                            Algunos temas que he grabado han sido nominados a participar en premiaciones y también producidos por sellos discográficos extranjeros como <strong>Otitis Media Records, Green Cookie Records.</strong> 
+                            <?php
+                                // información previa descripción
+                                $preview = mysqli_query($mysqli, "SELECT * FROM sobre_mi WHERE seccion = 'cesar'");
+                                while($prev = mysqli_fetch_array($preview)) {	
+                                    echo $prev['descripcion'];
+                                }
+                            ?>
                         </p>
                         <div class="signature">
                              <a href="#storytelling" class="btn border-danger rounded-pill">Conoce mi historia <i class="bi bi-arrow-down-short"></i></a> &nbsp;
-                             <a href="contact.php" class="btn btn-danger rounded-pill">Conoce mis servicios</a>
+                             <a href="services.php" class="btn btn-danger rounded-pill">Conoce mis servicios</a>
                         </div>
                     </div>
                 </div>
@@ -66,10 +79,13 @@
                     <div class="about_info text-center">
                         <h3>Conoce mi historia</h3>
                         <p>
-                        Al salvarme y recuperarme  a través de la música, me prometí que enseñaría a entenderla y  la haría llegar a todo el que la necesitará para superar algún momento difícil de la vida o que simplemente quisiera tocarla en algún instrumento. <br>
-                        Por eso para enseñarla he creado <a class="bogar-link" href="https://www.youtube.com/c/BogarOnline/playlists" target="_blank">“Bogar Online”</a> y para ayudar a las personas está la sección <a class="bogar-link" href="https://www.youtube.com/watch?v=ho8dLGQtlPE&list=PLhK0Suwe2ziqI_bT8oQD_pXn094JQiUUu" target="_blank">“¿Cómo le ayuda la música a tu salud?”</a> donde creo contenido y comparto testimonios de cómo la música y sus beneficios diarios nos ayudan en nuestra vida diaria y de manera consciente e inconsciente.
-                            <p> Si la música te ha ayudado física, mental o emocionalmente y te gustaría compartirlo con el mundo, <strong>da clic en contactarme</strong> para poder compartir y dar a conocer la magia de la música que ha hecho en tí.
-                            </p>
+                        <?php
+                            // información previa descripción
+                            $historia = mysqli_query($mysqli, "SELECT * FROM sobre_mi WHERE seccion = 'historia'");
+                            while($his = mysqli_fetch_array($historia)) {	
+                                echo $his['descripcion'];
+                            }
+                        ?>
                         </p>
                         <div class="signature">
                             <a href="#trayectoria" class="btn border-danger rounded-pill">Trayectoria <i class="bi bi-arrow-down-short"></i></a> &nbsp;
@@ -79,7 +95,17 @@
                 </div>
                 <div class="col-xl-5 col-md-6">
                     <div class="about_thumb">
-                        <img class="img-fluid" src="img/about/storytelling.png" alt="">
+                    <?php
+                        // informacion previa
+                        // include('./connection/config.php');
+                        $historia = mysqli_query($mysqli, "SELECT * FROM sobre_mi WHERE seccion = 'historia'");
+                        while($his = mysqli_fetch_array($historia)) {	
+                    ?>
+                        <img class="img-fluid" src="http://localhost/bogar_admin/img/upload_images/<?php echo $his['foto']; ?>" 
+                            alt="<?php echo $his['foto']; ?>">
+                    <?php
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
@@ -106,38 +132,21 @@
                                 <div class="horizontal-timeline">
                                     <h3 class="mb-30">Experiencia</h3> <br>
                                     <ul class="list-inline items">
+                                    <?php
+                                        // experiencias 
+                                        $experiencia = mysqli_query($mysqli, "SELECT * FROM expe_traye WHERE tipo = 'experiencia' ORDER BY tipo DESC");
+                                        while($expe = mysqli_fetch_array($experiencia)) {	
+                                    ?>
                                         <li class="list-inline-item items-list">
                                             <div class="px-4">
-                                                <div class="event-date badge bg-info">2 June</div>
-                                                <h5 class="pt-2">Event One</h5>
-                                                <p class="text-muted">It will be as simple as occidental in fact it will be Occidental Cambridge
-                                                friend</p>
+                                                <div class="event-date badge bg-info"><?php echo $expe['fecha_lugar']; ?></div>
+                                                <h5 class="pt-2"><?php echo $expe['titulo']; ?></h5>
+                                                <p class="text-muted"><?php echo $expe['descripcion']; ?></p>
                                             </div>
                                         </li>
-                                        <li class="list-inline-item items-list">
-                                            <div class="px-4">
-                                                <div class="event-date badge bg-success">5 June</div>
-                                                <h5 class="pt-2">Event Two</h5>
-                                                <p class="text-muted">Everyone realizes why a new common language one could refuse translators.
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-inline-item items-list">
-                                            <div class="px-4">
-                                                <div class="event-date badge bg-danger">7 June</div>
-                                                    <h5 class="pt-2">Event Three</h5>
-                                                    <p class="text-muted">If several languages coalesce the grammar of the resulting simple and
-                                                    regular</p>
-                                            </div>
-                                        </li>
-                                        <li class="list-inline-item items-list">
-                                            <div class="px-4">
-                                                <div class="event-date badge bg-warning">8 June</div>
-                                                    <h5 class="pt-2">Event Four</h5>
-                                                    <p class="text-muted">Languages only differ in their pronunciation and their most common words.
-                                                    </p>
-                                            </div>
-                                        </li>
+                                    <?php
+                                        }
+                                    ?>
                                     </ul>
                                 </div>
                             </div>
@@ -150,25 +159,23 @@
                                         <div class="progress-table">
                                             <div class="table-head">
                                                 <div class="serial">#</div>
-                                                <div class="country">País</div>
+                                                <div class="country">Lugar</div>
                                                 <div class="country">Tipo de trayectoria</div>
-                                                <div class="percentage">Experiencia</div>
+                                                <div class="percentage">Trayectoria</div>
                                             </div>
                                             <div class="table-row">
+                                                <?php
+                                                    // experiencias 
+                                                    $trayectoria = mysqli_query($mysqli, "SELECT * FROM expe_traye WHERE tipo = 'trayectoria' ORDER BY tipo DESC ");
+                                                    while($traye = mysqli_fetch_array($trayectoria)) {	
+                                                ?>
                                                 <div class="serial">01</div>
-                                                <div class="country"> <img src="img/elements/flagmexico.png" alt="flagmexico" width="50px">México</div>
-                                                <div class="country">Acompañamiento [Nombre del artista] </div>
-                                                <div class="percentage">
-                                                    Mi experiencia, sentimientos o aprendizaje fue....
-                                                </div>
-                                            </div>
-                                            <div class="table-row">
-                                                <div class="serial">02</div>
-                                                <div class="country"> <img src="img/elements/f1.jpg" alt="flagcanada" width="50px">Canadá</div>
-                                                <div class="country">Concierto </div>
-                                                <div class="percentage">
-                                                    Mi experiencia, sentimientos o aprendizaje fue....
-                                                </div>
+                                                <div class="country"> <?php echo $traye['fecha_lugar']; ?> </div>
+                                                <div class="country"><?php echo $traye['titulo']; ?></div>
+                                                <div class="percentage"><?php echo $traye['descripcion']; ?></div>
+                                                <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
