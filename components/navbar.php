@@ -7,7 +7,7 @@
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.php">
-                                    <img src="img/svg_icon/logonaveducador.svg" alt="" width="150px">
+                                    <img src="./img/logo_nabvar.png" alt="" width="150px"> 
                                 </a>
                             </div>
                         </div>
@@ -27,10 +27,59 @@
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="social_icon text-right">
                                 <ul>
-                                    <li><a href="#"> <i class="bi bi-facebook"></i> </a></li>
-                                    <li><a href="https://wa.me/525537178947"> <i class="bi bi-whatsapp"></i> </a></li>
-                                    <li><a href="#"> <i class="bi bi-youtube"></i> </a></li>
-                                    <li><a href="#"> <img width="13px" src="./img/svg_icon/platzi.svg"> </a></li>
+                                    <?php
+                                      //consultar link facebook
+                                      include('./connection/config.php');
+                                      $facebook = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'facebook'");
+                                      while($face = mysqli_fetch_array($facebook)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $face['link'];?>"> 
+                                            <i class="bi bi-facebook" target="_blank"></i> 
+                                            </a>
+                                        </li>
+                                    <?php
+                                      }
+                                    ?>
+                                    <?php
+                                      //consultar link whatsapp
+                                      $whatsapp = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'whatsapp'");
+                                      while($whats = mysqli_fetch_array($whatsapp)) {	
+                                    ?>
+                                        <li>
+                                            <a href="https://wa.me/<?php echo $whats['link'];?>" target="_blank"> 
+                                            <i class="bi bi-whatsapp"></i> 
+                                            </a>
+                                        </li>
+                                    <?php
+                                      }
+                                    ?>
+                                    <?php
+                                      //consultar link youtube
+                                      $youtube = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'youtube'");
+                                      while($you = mysqli_fetch_array($youtube)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $you['link'];?>" target="_blank"> 
+                                            <i class="bi bi-youtube"></i> 
+                                            </a>
+                                        </li>
+                                    <?php
+                                      }
+                                    ?>
+                                    <?php
+                                      //consultar link platzi
+                                      $platzi = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'platzi'");
+                                      while($pla = mysqli_fetch_array($platzi)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $pla['link'];?>" target="_blank">
+                                            <img width="13px" src="./img/svg_icon/platzi.svg">
+                                            </a>
+                                        </li>
+                                    <?php
+                                      }
+                                    ?>
                                 </ul>
                             </div>
                         </div>

@@ -3,10 +3,6 @@
 ?>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
     <!-- header-start -->
     <?php include 'components/navbar.php';?>
     
@@ -71,17 +67,30 @@
             <div class="row align-items-center">
                 <div class="col-xl-5 col-md-6">
                     <div class="about_thumb">
-                        <img class="img-fluid" src="img/about/bogar.jpg" alt="">
+                    <?php
+                        // informacion previa
+                        // include('./connection/config.php');
+                        $preview = mysqli_query($mysqli, "SELECT * FROM preview_info");
+                        while($prev = mysqli_fetch_array($preview)) {	
+                    ?>
+                        <img class="img-fluid" src="http://localhost/bogar_admin/img/upload_images/<?php echo $prev['imagen']; ?>" alt="<?php echo $prev['imagen']; ?>">
+                    <?php
+                        }
+                    ?>
+                        
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-6">
                     <div class="about_info">
                         <h3>César Nuñez</h3>
                         <p>
-                            Soy un enamorado de la música y sus ritmos. 
-                            Apasionado por compartir mis conocimientos sobre ella y guiarte en el proceso para entender la teórica, práctica, auditiva y libremente. 
-                            <br> <strong>Te guió</strong> en la música  <strong>para conectarte</strong> y así puedas entenderla, expresarla y liberar sentimientos mientras la escuchas.
-
+                        <?php
+                            // información previa descripción
+                            $preview = mysqli_query($mysqli, "SELECT * FROM preview_info");
+                            while($prev = mysqli_fetch_array($preview)) {	
+                                echo $prev['descripcion'];
+                            }
+                        ?>
                         </p>
                         <div class="signature">
                             <a class="btn btn-danger rounded-pill" href="about.php">Ven, conoceme</a>

@@ -17,51 +17,121 @@
                                 Contáctame
                             </h3>
                             <ul>
+                                <?php
+                                    //consultar preview info
+                                    include('./connection/config.php');
+                                    $prev = mysqli_query($mysqli, "SELECT * FROM preview_info");
+                                    while($pre = mysqli_fetch_array($prev)) {	
+                                ?>
                                 <li>
-                                    <a href="mailto:info@w3docs.com?subject=Hola desde tu portafolio web&body=Hola César, recibe cordial saludo, te escribo desde tu portafolio web [...Escribe aquí tu mensaje...]">bogardrums@gmail.com</a>
+                                    <a href="mailto:<?php echo $pre['correo'];?>
+                                    ?subject=Hola desde tu portafolio web&body=Hola César, recibe cordial saludo,
+                                    te escribo desde tu portafolio web [...Escribe aquí tu mensaje...]">
+                                        <?php echo $pre['correo'];?>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="https://wa.link/t673si" target="_blank">+52 155 3717 8947</a>
+                                    <a href="https://wa.me/<?php echo $pre['telefono'];?>" target="_blank"><?php echo $pre['telefono'];?></a>
                                 </li>
-                                <li>México DF</li>
+                                <li><?php echo $pre['ubicacion'];?></li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                             <div class="socail_links">
                                 <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://wa.me/525537178947" class="bg-success" target="_blank">
-                                            <i class="bi bi-whatsapp"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-youtube"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  class="bg-secondary">
-                                            <i class="bi bi-tiktok"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" > 
-                                            <img width="13px" src="./img/svg_icon/platzi.svg"> 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="bg-success"> 
-                                            <img width="13px" src="./img/svg_icon/linktree.svg"> 
-                                        </a>
-                                    </li>
+                                    <?php
+                                      //consultar link facebook
+                                      include('./connection/config.php');
+                                      $facebook = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'facebook'");
+                                      while($face = mysqli_fetch_array($facebook)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $face['link'];?>" class="bg-primary" target="_blank">
+                                                <i class="bi bi-facebook"></i>
+                                            </a>
+                                        </li>
+                                    <?php
+                                      }
+                                    ?>
+                                    <?php
+                                      //consultar link whatsapp
+                                      $whatsapp = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'whatsapp'");
+                                      while($whats = mysqli_fetch_array($whatsapp)) {	
+                                    ?>
+                                        <li>
+                                            <a href="https://wa.me/<?php echo $whats['link'];?>" class="bg-success" target="_blank">
+                                                <i class="bi bi-whatsapp"></i>
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                      //consultar link youtube
+                                      $youtube = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'youtube'");
+                                      while($you = mysqli_fetch_array($youtube)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $you['link'];?>" class="bg-danger" target="_blank">
+                                                <i class="bi bi-youtube"></i>
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                      //consultar link tiktok
+                                      $tiktok = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'tiktok'");
+                                      while($tik = mysqli_fetch_array($tiktok)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $tik['link'];?>" class="bg-secondary" target="_blank">
+                                                <i class="bi bi-tiktok"></i>
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                      //consultar link twitter
+                                      $twitter = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'twiter'");
+                                      while($twit = mysqli_fetch_array($twitter)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $twit['link'];?>" class="bg-primary" target="_blank">
+                                                <i class="bi bi-twitter"></i>
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                      //consultar link platzi
+                                      $platzi = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'platzi'");
+                                      while($pla = mysqli_fetch_array($platzi)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $pla['link'];?>" target="_blank">
+                                                <img width="13px" src="./img/svg_icon/platzi.svg">
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                      //consultar link linktree
+                                      $linktree = mysqli_query($mysqli, "SELECT * FROM links_redes WHERE nombre_link = 'linktree'");
+                                      while($lt = mysqli_fetch_array($linktree)) {	
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $lt['link'];?>" class="bg-success" target="_blank">
+                                                <img width="13px" src="./img/svg_icon/linktree.svg"> 
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -76,7 +146,7 @@
                     <div class="col-xl-7 col-md-6">
                         <p class="copy_right">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            &copy; 2022 todos los derechos reservados | esta plantilla esta hecha por <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
