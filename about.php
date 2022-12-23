@@ -155,30 +155,33 @@
                             <div class="col-lg-12">
                                 <div class="section-top-border">
                                     <h3 class="mb-30">Trayectoria</h3>
-                                    <div class="progress-table-wrap">
-                                        <div class="progress-table">
-                                            <div class="table-head">
-                                                <div class="serial">#</div>
-                                                <div class="country">Lugar</div>
-                                                <div class="country">Tipo de trayectoria</div>
-                                                <div class="percentage">Trayectoria</div>
-                                            </div>
-                                            <div class="table-row">
-                                                <?php
-                                                    // experiencias 
-                                                    $trayectoria = mysqli_query($mysqli, "SELECT * FROM expe_traye WHERE tipo = 'trayectoria' ORDER BY tipo DESC ");
-                                                    while($traye = mysqli_fetch_array($trayectoria)) {	
-                                                ?>
-                                                <div class="serial">01</div>
-                                                <div class="country"> <?php echo $traye['fecha_lugar']; ?> </div>
-                                                <div class="country"><?php echo $traye['titulo']; ?></div>
-                                                <div class="percentage"><?php echo $traye['descripcion']; ?></div>
-                                                <?php
-                                                    }
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="bd-example">
+                                        <table class="table table-responsive table-hover">
+                                            <thead>
+                                            <tr>
+                                            <th scope="col"><i class="bi bi-pin-map"></i> Lugar</th>
+                                            <th scope="col"><i class="bi bi-signpost"></i> Trayectoria</th>
+                                            <th scope="col"><i class="bi bi-list-nested"></i> Descripción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            // experiencias 
+                                            $trayectoria = mysqli_query($mysqli, "SELECT * FROM expe_traye WHERE tipo = 'trayectoria' ORDER BY tipo DESC ");
+                                            while($traye = mysqli_fetch_array($trayectoria)) {	
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $traye['fecha_lugar']; ?></td>
+                                                <td><?php echo $traye['titulo']; ?></td>
+                                                <td><?php echo $traye['descripcion']; ?></td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        ?>
+                                        </tbody>
+
+                                        </table>
+                                    </div>  
                                 </div>
                             </div>
                         </div>

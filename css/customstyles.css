@@ -131,3 +131,6 @@
 
 /* end dash and login */
 
+.blog_item_img .blog_item_date:hover{
+  background-color: #ed1b1b;
+}

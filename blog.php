@@ -3,7 +3,7 @@
 include_once("connection/config.php");
 
 //fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORDER BY creacion_entrada desc");
+$result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORDER BY fecha_entrada desc");
 ?>
 
 <?php
@@ -46,29 +46,23 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORD
                         ?>   
                         <article class="blog_item bogar-article-card">
                             <div class="blog_item_img">
-                                <a href="#" class="blog_item_date">
+                                <a href="#" class="blog_item_date bg-danger">
                                     <h3>
                                         <?php 
-                                            $date = date('d F Y', strtotime($res['creacion_entrada']));
-                                            $date = explode(" ", $date);
+                                            $date = $date = $res['creacion_entrada'];;
+                                            // $date = explode(" ", $date);
                                             echo $date[0];
+                                            echo $date[1];
                                         ?>
                                     </h3>
                                     <p>
                                         <?php 
-                                           $date = date('d F Y', strtotime($res['creacion_entrada']));
-                                           $date = explode(" ", $date);
-                                           echo $date[1];
-                                        ?>
-                                        <?php 
-                                           $date = date('d F Y', strtotime($res['creacion_entrada']));
-                                           $date = explode(" ", $date);
-                                           echo $date[2];
+                                           $date = $res['creacion_entrada'];
+                                           echo substr(ucwords($date), 2, 10);
                                         ?>
                                     </p>
                                 </a>
                             </div>
-
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.php?id_blog=<?php echo $res['id_entrada']?>">
                                     <h2><?php echo $res['titulo_entrada']?></h2>
@@ -80,14 +74,11 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORD
                                 </ul>
                             </div>
                         </article>
-                        <br>
+                        <p><br></p>
                     <?php
                         }
                     ?>  
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    
                 </div>
             </div>
         </div>

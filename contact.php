@@ -52,7 +52,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE estado_entrada = 1 ORD
             }
         ?>
         <div class="col-lg-8">
-          <form class="form-contact contact_form" action="controllers/nuevo_contactoCOntroller.php" method="post" id="contactForm">
+          <form class="form-contact contact_form" action="controllers/nuevo_contactoCOntroller.php" method="post" >
             <div class="row">
             <div class="col-12">
                 <div class="form-group">

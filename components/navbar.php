@@ -34,7 +34,7 @@
                                       while($face = mysqli_fetch_array($facebook)) {	
                                     ?>
                                         <li>
-                                            <a href="<?php echo $face['link'];?>"> 
+                                            <a href="<?php echo $face['link'];?>" target="_blank"> 
                                             <i class="bi bi-facebook" target="_blank"></i> 
                                             </a>
                                         </li>

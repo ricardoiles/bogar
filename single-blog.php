@@ -102,18 +102,18 @@ $result = mysqli_query($mysqli, "SELECT * FROM blog WHERE id_entrada = '".$id."'
                         <input name="id_entrada" type="hidden" value="<?php echo $res['id_entrada']?>">
                         <div class="col-12">
                            <div class="form-group">
-                              <textarea class="form-control w-100 border-secondary" name="comentario" id="comment" cols="30" rows="9"
+                              <textarea class="form-control w-100 border-secondary bg-white" name="comentario" id="comment" cols="30" rows="9"
                                  placeholder="Escribe aquí tu comentario" required></textarea>
                            </div>
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group">
-                              <input class="form-control border-secondary" name="usuario" id="name" type="text" placeholder="Escribe tu nombre" required>
+                              <input class="form-control border-secondary bg-white" name="usuario" id="name" type="text" placeholder="Escribe tu nombre" required>
                            </div>
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group">
-                              <input class="form-control border-secondary" name="email" id="email" type="email" placeholder="Correo electrónico" required>
+                              <input class="form-control border-secondary bg-white" name="email" id="email" type="email" placeholder="Correo electrónico" required>
                            </div>
                         </div>
                      </div>
