@@ -26,7 +26,7 @@
     <!--/ bradcam_area  -->
     <!-- music_area  -->
     <div class="music_area music_gallery ">
-        <div class="container" style="margin-top:-100px">
+        <div class="container" style="margin-top:-10%">
             <div class="container mb-3">
                 <!-- service section -->
                 <hr>
